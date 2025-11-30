@@ -32,10 +32,13 @@ function App() {
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [wheelRotation, setWheelRotation] = useState(
-    typeof window !== "undefined" && window.innerWidth <= 768 ? 202.5 : 292.5
+    typeof window !== "undefined" && window.innerWidth <= 768
+      ? 202.5 - 180
+      : 292.5
   );
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -131,11 +134,23 @@ function App() {
             <img src={logoIcon} alt="Lume" className="logo-icon" />
             <span className="logo-text">lume</span>
           </div>
-          <nav className="nav">
+          <button
+            className="menu-toggle"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`menu-icon ${isMenuOpen ? "open" : ""}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+          <nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
             <a
               href="#how-it-works"
               onClick={(e) => {
                 e.preventDefault();
+                setIsMenuOpen(false);
                 const element = document.getElementById("how-it-works");
                 if (element) {
                   element.scrollIntoView({
@@ -147,17 +162,22 @@ function App() {
             >
               How It Works
             </a>
-            <a href="#mission">Mission</a>
-            <a href="#team">Team</a>
+            <a href="#mission" onClick={() => setIsMenuOpen(false)}>
+              Mission
+            </a>
+            <a href="#team" onClick={() => setIsMenuOpen(false)}>
+              Team
+            </a>
             <button
               className="btn-get-lume"
-              onClick={() =>
+              onClick={() => {
+                setIsMenuOpen(false);
                 window.open(
                   "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
                   "_blank",
                   "noopener,noreferrer"
-                )
-              }
+                );
+              }}
             >
               Get Lume
             </button>
