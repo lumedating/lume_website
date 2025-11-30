@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import heroScreenshots from "./assets/images/Lume Website Hero Screenshots.png";
 import gameWheel from "./assets/images/Game Wheel.png";
-import logoIcon from "./assets/images/Instagram Profile Picture.png";
+import logoIcon from "./assets/images/Lume App Icon.png";
 import wordUnscrambleBackground from "./assets/images/Word Unscramble Background.png";
 import rizzQuizBackground from "./assets/images/Rizz Quiz Background.png";
 import greenFlagBackground from "./assets/images/Green Flag Background.png";
