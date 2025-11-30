@@ -1,0 +1,597 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #111111;
+  color: #ffffff;
+}
+
+/* Animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.animated {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.step-panel:nth-child(1) .animate-on-scroll.animated {
+  animation-delay: 0.1s;
+}
+
+.step-panel:nth-child(2) .animate-on-scroll.animated {
+  animation-delay: 0.2s;
+}
+
+.step-panel:nth-child(3) .animate-on-scroll.animated {
+  animation-delay: 0.3s;
+}
+
+.hero-description.animate-on-scroll.animated {
+  animation-delay: 0.2s;
+}
+
+.game-description.animate-on-scroll.animated {
+  animation-delay: 0.2s;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 12px;
+  height: 88px;
+  padding: 0 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111111;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.header-visible {
+  transform: translateY(0);
+}
+
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.logo-icon {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  border-radius: 20%;
+}
+
+.logo-text {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+}
+
+.nav a {
+  color: #ffffff;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.nav a:hover {
+  opacity: 0.7;
+}
+
+.btn-get-lume {
+  background-color: #b700ff;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  box-shadow: 2px 2px 0 #8800bd;
+}
+
+.btn-get-lume:hover {
+  opacity: 0.8;
+}
+
+/* Hero Section */
+.hero {
+  margin: 12px 12px;
+  margin-top: 88px;
+  height: calc(100vh - 112px);
+  padding: 4rem 4rem;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, #8800be 0%, #c739ff 100%);
+  border-radius: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 1400px;
+  padding: 4rem 4rem 4rem 4rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  overflow: visible;
+}
+
+.hero-text {
+  flex: 1;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: "Bowlby One", sans-serif;
+  font-size: 4rem;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.btn-app-store {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #cccccc;
+}
+
+.btn-app-store:hover {
+  opacity: 0.8;
+}
+
+.btn-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.btn-text-small {
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.btn-text-large {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.apple-logo {
+  width: 20px;
+  height: 24px;
+}
+
+.hero-phones {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  overflow: visible;
+  margin-right: -100px;
+}
+
+.hero-screenshots {
+  width: 100%;
+  height: 200%;
+  object-fit: contain;
+  max-width: 1400px;
+  object-position: center top;
+  transform: translateY(-5%);
+}
+
+/* How It Works Section */
+.how-it-works {
+  padding: 12px;
+  background-color: #111111;
+  border-radius: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.how-it-works-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.step-panel {
+  background-color: #1b1b1b;
+  border-radius: 1.5rem;
+  height: 500px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.step-number {
+  font-family: "Bowlby One", sans-serif;
+  font-size: 14rem;
+  color: #4a4a4a;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+.step-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.step-panel:nth-child(1) .step-text {
+  animation-delay: 0.1s;
+}
+
+.step-panel:nth-child(2) .step-text {
+  animation-delay: 0.2s;
+}
+
+.step-panel:nth-child(3) .step-text {
+  animation-delay: 0.3s;
+}
+
+/* Games Section */
+.games {
+  margin: 12px 12px;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 36px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-image 1s ease-in-out;
+}
+
+.games-content {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.games-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+.game-wheel-image {
+  height: 500px;
+  width: auto;
+  object-fit: contain;
+  transform: translateX(-275px);
+  transition: transform 1s ease-in-out;
+}
+
+.games-center {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: translateX(-350px);
+}
+
+.btn-what-are-games {
+  background-color: #b700ff;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 900;
+  align-self: flex-start;
+  transition: opacity 0.2s;
+}
+
+.btn-what-are-games:hover {
+  opacity: 0.8;
+}
+
+.game-title {
+  font-family: "Bowlby One", sans-serif;
+  font-size: 4rem;
+  color: #000000;
+  line-height: 1.1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.game-description {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  color: #000000;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.game-text-animate {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.game-description.game-text-animate {
+  animation: slideInRight 0.6s ease-out 0.2s both;
+}
+
+/* Footer */
+.footer {
+  margin: 1rem 12px;
+  padding: 6rem 4rem;
+  background-color: #1b1b1b;
+  border-radius: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-text {
+  font-family: "Bowlby One", sans-serif;
+  font-size: 4rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-app-store-footer {
+  background-color: #b700ff;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #8800bd;
+}
+
+.btn-app-store-footer:hover {
+  opacity: 0.8;
+}
+
+.btn-instagram {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #cccccc;
+}
+
+.btn-instagram:hover {
+  opacity: 0.8;
+}
+
+.instagram-logo {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .hero-content {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .hero-phones {
+    height: 500px;
+  }
+
+  .games-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .how-it-works-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1.5rem 2rem;
+  }
+
+  .nav {
+    gap: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .nav a {
+    display: none;
+  }
+
+  .hero {
+    padding: 2rem 1rem 4rem;
+    height: calc(100vh - 100px);
+  }
+
+  .hero-content {
+    padding: 2rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-description {
+    text-align: center;
+  }
+
+  .hero-phones {
+    margin-top: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .how-it-works {
+    padding: 12px 0;
+    margin: 12px 0px;
+  }
+
+  .how-it-works-content {
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .games {
+    padding: 4rem 0;
+    height: auto;
+    min-height: 500px;
+  }
+
+  .games-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0;
+    align-items: center;
+    justify-items: stretch;
+    padding: 0;
+    width: 100%;
+  }
+
+  .games-center {
+    order: 1;
+    transform: translateX(0);
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem 0.5rem 2rem;
+    margin: 0;
+  }
+
+  .btn-what-are-games {
+    align-self: center;
+  }
+
+  .games-left {
+    order: 2;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    margin-top: -12.5rem;
+  }
+
+  .game-wheel-image {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .footer {
+    padding: 4rem 2rem;
+  }
+
+  .game-title {
+    font-size: 2.5rem;
+  }
+
+  .game-description {
+    font-size: 1rem;
+  }
+
+  .footer-text {
+    font-size: 2.5rem;
+  }
+
+  .footer-buttons {
+    gap: 1rem;
+  }
+}
