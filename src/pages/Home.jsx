@@ -30,38 +30,34 @@ const games = [
 function Home() {
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [wheelRotation, setWheelRotation] = useState(
-    typeof window !== "undefined" && window.innerWidth <= 768
-      ? 202.5 - 180
-      : 292.5
-  );
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
-      if (mobile && wheelRotation === 292.5) {
-        setWheelRotation(202.5);
-      } else if (!mobile && wheelRotation === 202.5) {
-        setWheelRotation(292.5);
-      }
+      setIsMobile(window.innerWidth <= 768);
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
-  }, [wheelRotation]);
+  }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentGameIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % games.length;
-        const rotationAmount = prevIndex === 2 && nextIndex === 0 ? 45 : 22.5;
-        setWheelRotation((prevRotation) => prevRotation + rotationAmount);
-        return nextIndex;
-      });
-    }, 5000);
+    const animationDuration = 12000; // 12 seconds for full rotation
+    const gameDuration = animationDuration / games.length; // 4 seconds per game
 
-    return () => clearInterval(interval);
+    const updateGameIndex = () => {
+      const startTime = performance.now();
+
+      const animate = (currentTime) => {
+        const elapsed = (currentTime - startTime) % animationDuration;
+        const newIndex = Math.floor((elapsed / gameDuration) % games.length);
+        setCurrentGameIndex(newIndex);
+        requestAnimationFrame(animate);
+      };
+
+      requestAnimationFrame(animate);
+    };
+
+    updateGameIndex();
   }, []);
 
   useEffect(() => {
@@ -178,11 +174,6 @@ function Home() {
               src={gameWheel}
               alt="Game wheel"
               className="game-wheel-image"
-              style={{
-                transform: isMobile
-                  ? `translateX(0) translateY(275px) rotate(${wheelRotation}deg)`
-                  : `translateX(-275px) rotate(${wheelRotation}deg)`,
-              }}
             />
           </div>
           <div className="games-center">

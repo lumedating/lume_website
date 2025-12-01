@@ -280,6 +280,24 @@
   }
 }
 
+@keyframes rotate-wheel {
+  from {
+    transform: translateX(-275px) rotate(0deg);
+  }
+  to {
+    transform: translateX(-275px) rotate(360deg);
+  }
+}
+
+@keyframes rotate-wheel-mobile {
+  from {
+    transform: translateX(0) translateY(275px) rotate(0deg);
+  }
+  to {
+    transform: translateX(0) translateY(275px) rotate(360deg);
+  }
+}
+
 .hero-content {
   width: 100%;
   max-width: 1400px;
@@ -465,7 +483,7 @@
   width: auto;
   object-fit: contain;
   transform: translateX(-275px);
-  transition: transform 1s ease-in-out;
+  animation: rotate-wheel 12s linear infinite;
 }
 
 .games-center {
@@ -580,6 +598,51 @@
   height: 24px;
 }
 
+/* Site Footer */
+.site-footer {
+  margin: 12px 12px;
+  padding: 3rem 4rem;
+  background-color: #1b1b1b;
+  border-radius: 36px;
+}
+
+.site-footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.site-footer-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  color: #ffffff;
+  opacity: 0.6;
+  margin: 0;
+}
+
+.site-footer-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.site-footer-link {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.site-footer-link:hover {
+  opacity: 1;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .hero-content {
@@ -692,7 +755,7 @@
 
   .mission-hero {
     padding: 2rem 1rem;
-    height: 250px;
+    height: 150px;
   }
 
   .mission-title {
@@ -700,12 +763,12 @@
   }
 
   .mission-section {
-    padding: 6rem 1.5rem;
+    padding: 3rem 1.5rem;
   }
 
   .gallery-section {
     margin: 12px 12px;
-    height: 400px;
+    height: 300px;
   }
 
   .gallery-image-wrapper {
@@ -816,6 +879,7 @@
     margin: 0;
     padding: 0;
     display: block;
+    animation: rotate-wheel-mobile 12s linear infinite;
   }
 
   .footer {
@@ -836,5 +900,19 @@
 
   .footer-buttons {
     gap: 1rem;
+  }
+
+  .site-footer {
+    padding: 2rem 1.5rem;
+  }
+
+  .site-footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .site-footer-links {
+    gap: 1.5rem;
   }
 }
