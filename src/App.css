@@ -207,6 +207,64 @@
   color: #ffffff;
 }
 
+/* Team Section */
+.team-section {
+  margin: 0px 0px;
+  margin-top: 0;
+  padding: 0px 0rem;
+  background-color: #111111;
+  border-radius: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.team-content {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.team-card {
+  background-color: #1b1b1b;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.team-card-info {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.team-card-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.team-card-position {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  opacity: 0.75;
+  margin: 0;
+}
+
 /* Gallery Section */
 .gallery-section {
   margin: 12px 12px;
@@ -368,8 +426,21 @@
 }
 
 .apple-logo {
-  width: 20px;
-  height: 24px;
+  font-size: 24px;
+  width: 24px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.money-bag-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-phones {
@@ -459,7 +530,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
-  transition: background-image 1s ease-in-out;
+  transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
 }
 
 .games-content {
@@ -594,8 +665,12 @@
 }
 
 .instagram-logo {
-  width: 24px;
-  height: 24px;
+  font-size: 24px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Site Footer */
@@ -660,6 +735,10 @@
   }
 
   .how-it-works-content {
+    grid-template-columns: 1fr;
+  }
+
+  .team-content {
     grid-template-columns: 1fr;
   }
 }
@@ -764,6 +843,14 @@
 
   .mission-section {
     padding: 3rem 1.5rem;
+  }
+
+  .team-section {
+    padding: 0rem 0rem;
+  }
+
+  .team-content {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .gallery-section {

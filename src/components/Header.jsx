@@ -92,6 +92,9 @@ function Header() {
           <Link to="/mission" onClick={handleNavClick}>
             Mission
           </Link>
+          <Link to="/team" onClick={handleNavClick}>
+            Team
+          </Link>
           <button
             className="btn-get-lume"
             onClick={() => {
