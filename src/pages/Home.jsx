@@ -4,6 +4,9 @@ import gameWheel from "../assets/images/Game Wheel.png";
 import wordUnscrambleBackground from "../assets/images/Word Unscramble Background.png";
 import rizzQuizBackground from "../assets/images/Rizz Quiz Background.png";
 import greenFlagBackground from "../assets/images/Green Flag Background.png";
+import greenFlagScreenshot from "../assets/images/Green Flag Screenshot.png";
+import resultsWinScreenshot from "../assets/images/Results (Win) Screenshot.png";
+import resultsWinMatchScreenshot from "../assets/images/Results (Win - Match) Screenshot.png";
 import "../App.css";
 
 const games = [
@@ -132,25 +135,37 @@ function Home() {
       <section className="how-it-works" id="how-it-works">
         <div className="how-it-works-content">
           <div className="step-panel">
-            <div className="step-number">1</div>
             <p className="step-text animate-on-scroll">
               Play a quick game to get to know another student with a locked
               profile
             </p>
+            <img
+              src={greenFlagScreenshot}
+              alt="Green Flag game screenshot"
+              className="step-screenshot"
+            />
           </div>
           <div className="step-panel">
-            <div className="step-number">2</div>
             <p className="step-text animate-on-scroll">
               If you win, you unlock their profile and reveal their photos and
               info!
             </p>
+            <img
+              src={resultsWinScreenshot}
+              alt="Results win screenshot"
+              className="step-screenshot"
+            />
           </div>
           <div className="step-panel">
-            <div className="step-number">3</div>
             <p className="step-text animate-on-scroll">
               If you both unlock each other's profiles, open up a chat or meet
               IRL
             </p>
+            <img
+              src={resultsWinMatchScreenshot}
+              alt="Results win match screenshot"
+              className="step-screenshot"
+            />
           </div>
         </div>
       </section>

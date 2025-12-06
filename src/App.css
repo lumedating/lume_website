@@ -487,9 +487,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   gap: 1.5rem;
+  overflow: hidden;
+  position: relative;
 }
 
 .step-number {
@@ -505,6 +507,19 @@
   font-size: 1.5rem;
   color: #ffffff;
   line-height: 1.6;
+  margin: 0;
+}
+
+.step-screenshot {
+  width: 200%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  position: absolute;
+  bottom: -35%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .step-panel:nth-child(1) .step-text {
@@ -916,7 +931,13 @@
   }
 
   .step-panel {
-    height: 300px;
+    height: 450px;
+  }
+
+  .step-screenshot {
+    width: 250%;
+    max-height: 350px;
+    bottom: -25%;
   }
 
   .games {
