@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../App.css";
 import tannerKopel from "../assets/images/team/Tanner Kopel Image.jpg";
 import anthonyLuparello from "../assets/images/team/Anthony Luparello Image.jpg";
@@ -58,6 +59,16 @@ const teamMembers = [
 ];
 
 function Team() {
+  const [loadedImages, setLoadedImages] = useState(new Set());
+
+  const handleImageLoad = (index) => {
+    setLoadedImages((prev) => new Set([...prev, index]));
+  };
+
+  const isImageLoaded = (index) => {
+    return loadedImages.has(index);
+  };
+
   return (
     <>
       {/* Title Section */}
@@ -72,11 +83,19 @@ function Team() {
         <div className="team-content">
           {teamMembers.map((member, index) => (
             <div key={index} className="team-card">
-              <img
-                src={member.image}
-                alt={member.name}
-                className="team-card-image"
-              />
+              <div className="team-card-image-wrapper">
+                {!isImageLoaded(index) && (
+                  <div className="team-card-skeleton"></div>
+                )}
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className={`team-card-image ${
+                    isImageLoaded(index) ? "loaded" : "loading"
+                  }`}
+                  onLoad={() => handleImageLoad(index)}
+                />
+              </div>
               <div className="team-card-info">
                 <h3 className="team-card-name">{member.name}</h3>
                 <p className="team-card-position">{member.position}</p>

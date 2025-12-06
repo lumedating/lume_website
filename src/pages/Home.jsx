@@ -52,18 +52,26 @@ function Home() {
 
     const updateGameIndex = () => {
       const startTime = performance.now();
+      let animationFrameId;
 
       const animate = (currentTime) => {
         const elapsed = (currentTime - startTime) % animationDuration;
         const newIndex = Math.floor((elapsed / gameDuration) % games.length);
         setCurrentGameIndex(newIndex);
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
       };
 
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
+
+      return () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+        }
+      };
     };
 
-    updateGameIndex();
+    const cleanup = updateGameIndex();
+    return cleanup;
   }, []);
 
   useEffect(() => {
