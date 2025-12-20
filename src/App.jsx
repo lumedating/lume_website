@@ -10,8 +10,9 @@ import Team from "./pages/Team";
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null, errorInfo: null, retryCount: 0 };
+    this.state = { hasError: false, error: null, errorInfo: null };
     this.retryTimeout = null;
+    this.retryCountRef = { current: 0 }; // Use ref to track retry count
   }
 
   static getDerivedStateFromError(error) {
@@ -31,12 +32,13 @@ class ErrorBoundary extends Component {
 
     // Auto-retry for transient errors (like resource loading issues)
     // Only auto-retry once to avoid infinite loops
-    if (this.state.retryCount === 0) {
+    // Use ref to check current retry count immediately
+    if (this.retryCountRef.current === 0) {
+      this.retryCountRef.current = 1;
       this.retryTimeout = setTimeout(() => {
-        this.setState(prevState => ({
+        this.setState({
           hasError: false,
-          retryCount: prevState.retryCount + 1,
-        }));
+        });
       }, 1500);
     }
   }
@@ -52,13 +54,16 @@ class ErrorBoundary extends Component {
     // Clear any pending retry
     if (this.retryTimeout) {
       clearTimeout(this.retryTimeout);
+      this.retryTimeout = null;
     }
+    
+    // Reset retry count
+    this.retryCountRef.current = 0;
     
     this.setState({
       hasError: false,
       error: null,
       errorInfo: null,
-      retryCount: 0,
     });
   };
 

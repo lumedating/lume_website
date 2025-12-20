@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logoIcon from "../assets/images/Lume App Icon.png";
+import { useFontAwesome } from "../hooks/useFontAwesome";
 import "../App.css";
 
 function Header() {
@@ -8,6 +9,7 @@ function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const fontAwesomeLoaded = useFontAwesome();
 
   useEffect(() => {
     const handleScroll = () => {

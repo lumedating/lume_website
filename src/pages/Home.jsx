@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import heroScreenshots from "../assets/images/Lume Website Hero Screenshots.png";
 import gameWheel from "../assets/images/Game Wheel.png";
 import wordUnscrambleBackground from "../assets/images/Word Unscramble Background.png";
@@ -7,6 +7,7 @@ import greenFlagBackground from "../assets/images/Green Flag Background.png";
 import greenFlagScreenshot from "../assets/images/Green Flag Screenshot.png";
 import resultsWinScreenshot from "../assets/images/Results (Win) Screenshot.png";
 import resultsWinMatchScreenshot from "../assets/images/Results (Win - Match) Screenshot.png";
+import { useFontAwesome } from "../hooks/useFontAwesome";
 import "../App.css";
 
 const games = [
@@ -36,6 +37,8 @@ const games = [
 function Home() {
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const fontAwesomeLoaded = useFontAwesome();
+  const observerRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -75,24 +78,54 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
-    };
+    // Wait for DOM to be ready and elements to exist before querying
+    let retryCount = 0;
+    const maxRetries = 10; // Maximum 1 second of retries (10 * 100ms)
+    let timeoutId = null;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animated");
+    const setupObserver = () => {
+      // Use requestAnimationFrame to ensure DOM is fully rendered
+      requestAnimationFrame(() => {
+        const elements = document.querySelectorAll(".animate-on-scroll");
+        
+        // If no elements found, try again after a short delay (with retry limit)
+        if (elements.length === 0 && retryCount < maxRetries) {
+          retryCount++;
+          timeoutId = setTimeout(setupObserver, 100);
+          return;
+        }
+
+        // Only set up observer if elements exist
+        if (elements.length > 0) {
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px",
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animated");
+              }
+            });
+          }, observerOptions);
+
+          elements.forEach((el) => observer.observe(el));
+          observerRef.current = observer;
         }
       });
-    }, observerOptions);
+    };
 
-    const elements = document.querySelectorAll(".animate-on-scroll");
-    elements.forEach((el) => observer.observe(el));
+    setupObserver();
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
     };
   }, []);
 
@@ -122,7 +155,7 @@ function Home() {
                 )
               }
             >
-              <i className="fa-brands fa-apple apple-logo"></i>
+              {fontAwesomeLoaded && <i className="fa-brands fa-apple apple-logo"></i>}
               <div className="btn-text-wrapper">
                 <span className="btn-text-small">Download on the</span>
                 <span className="btn-text-large">App Store</span>
@@ -232,7 +265,7 @@ function Home() {
               )
             }
           >
-            <i className="fa-brands fa-apple apple-logo"></i>
+            {fontAwesomeLoaded && <i className="fa-brands fa-apple apple-logo"></i>}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Download on the</span>
               <span className="btn-text-large">App Store</span>
@@ -248,7 +281,7 @@ function Home() {
               )
             }
           >
-            <i className="fa-brands fa-instagram instagram-logo"></i>
+            {fontAwesomeLoaded && <i className="fa-brands fa-instagram instagram-logo"></i>}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Follow us on</span>
               <span className="btn-text-large">Instagram</span>

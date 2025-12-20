@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import { useFontAwesome } from "../hooks/useFontAwesome";
 import tannerKopel from "../assets/images/team/Tanner Kopel Image.jpg";
 import anthonyLuparello from "../assets/images/team/Anthony Luparello Image.jpg";
 import stephenNguyen from "../assets/images/team/Stephen Nguyen Image.jpg";
@@ -60,6 +61,7 @@ const teamMembers = [
 
 function Team() {
   const [loadedImages, setLoadedImages] = useState(new Set());
+  const fontAwesomeLoaded = useFontAwesome();
 
   const handleImageLoad = (index) => {
     setLoadedImages((prev) => new Set([...prev, index]));
@@ -119,7 +121,7 @@ function Team() {
               )
             }
           >
-            <i className="fa-solid fa-sack-dollar money-bag-icon"></i>
+            {fontAwesomeLoaded && <i className="fa-solid fa-sack-dollar money-bag-icon"></i>}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Apply for the</span>
               <span className="btn-text-large">Growth Team</span>
@@ -135,7 +137,7 @@ function Team() {
               )
             }
           >
-            <i className="fa-brands fa-instagram instagram-logo"></i>
+            {fontAwesomeLoaded && <i className="fa-brands fa-instagram instagram-logo"></i>}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">DM us on</span>
               <span className="btn-text-large">Instagram</span>

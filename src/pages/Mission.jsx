@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import { useFontAwesome } from "../hooks/useFontAwesome";
 import img0428 from "../assets/images/gallery/IMG_0428.png";
 import img0506 from "../assets/images/gallery/IMG_0506.png";
 import img0507 from "../assets/images/gallery/IMG_0507.png";
@@ -10,6 +11,7 @@ const galleryImages = [img0428, img0506, img0507, img0509, img8214];
 
 function Mission() {
   const [loadedImages, setLoadedImages] = useState(new Set());
+  const fontAwesomeLoaded = useFontAwesome();
 
   const handleImageLoad = (index) => {
     setLoadedImages((prev) => new Set([...prev, index]));
@@ -135,7 +137,7 @@ function Mission() {
               )
             }
           >
-            <i className="fa-brands fa-apple apple-logo"></i>
+            {fontAwesomeLoaded && <i className="fa-brands fa-apple apple-logo"></i>}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Download on the</span>
               <span className="btn-text-large">App Store</span>
@@ -151,7 +153,7 @@ function Mission() {
               )
             }
           >
-            <i className="fa-brands fa-instagram instagram-logo"></i>
+            {fontAwesomeLoaded && <i className="fa-brands fa-instagram instagram-logo"></i>}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Follow us on</span>
               <span className="btn-text-large">Instagram</span>
