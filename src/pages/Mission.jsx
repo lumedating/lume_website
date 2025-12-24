@@ -137,7 +137,9 @@ function Mission() {
               )
             }
           >
-            {fontAwesomeLoaded && <i className="fa-brands fa-apple apple-logo"></i>}
+            {fontAwesomeLoaded && (
+              <i className="fa-brands fa-apple apple-logo"></i>
+            )}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Download on the</span>
               <span className="btn-text-large">App Store</span>
@@ -153,7 +155,9 @@ function Mission() {
               )
             }
           >
-            {fontAwesomeLoaded && <i className="fa-brands fa-instagram instagram-logo"></i>}
+            {fontAwesomeLoaded && (
+              <i className="fa-brands fa-instagram instagram-logo"></i>
+            )}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Follow us on</span>
               <span className="btn-text-large">Instagram</span>

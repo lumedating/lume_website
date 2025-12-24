@@ -10,13 +10,19 @@ import Team from "./pages/Team";
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null, errorInfo: null };
+    this.state = { 
+      hasError: false, 
+      error: null, 
+      errorInfo: null,
+      showError: false // Separate state for showing error UI
+    };
     this.retryTimeout = null;
-    this.retryCountRef = { current: 0 }; // Use ref to track retry count
+    this.showErrorTimeout = null;
+    this.retryCountRef = { current: 0 };
   }
 
   static getDerivedStateFromError(error) {
-    // Catch errors and update state
+    // Don't immediately show error - wait to see if it resolves
     return { hasError: true, error };
   }
 
@@ -30,31 +36,112 @@ class ErrorBoundary extends Component {
       errorInfo,
     });
 
-    // Auto-retry for transient errors (like resource loading issues)
+    // Filter out non-critical errors that shouldn't show error UI
+    const isNonCriticalError = this.isNonCriticalError(error, errorInfo);
+    
+    if (isNonCriticalError) {
+      // For non-critical errors, just log and don't show UI
+      console.warn("Non-critical error caught, not showing error UI:", error);
+      // Auto-recover after a short delay
+      if (this.retryCountRef.current === 0) {
+        this.retryCountRef.current = 1;
+        this.retryTimeout = setTimeout(() => {
+          this.setState({
+            hasError: false,
+            error: null,
+            errorInfo: null,
+          });
+        }, 500);
+      }
+      return;
+    }
+
+    // For critical errors, wait a bit before showing error UI
+    // This allows transient errors to resolve themselves
+    // Clear any existing timeout
+    if (this.showErrorTimeout) {
+      clearTimeout(this.showErrorTimeout);
+    }
+
+    // Wait 2 seconds before showing error UI
+    // This gives time for transient errors to resolve
+    this.showErrorTimeout = setTimeout(() => {
+      // Only show error if it still exists (hasn't been resolved)
+      if (this.state.hasError) {
+        this.setState({ showError: true });
+      }
+    }, 2000);
+
+    // Auto-retry for transient errors
     // Only auto-retry once to avoid infinite loops
-    // Use ref to check current retry count immediately
     if (this.retryCountRef.current === 0) {
       this.retryCountRef.current = 1;
       this.retryTimeout = setTimeout(() => {
+        // If error resolved, clear the show error timeout
+        if (this.showErrorTimeout) {
+          clearTimeout(this.showErrorTimeout);
+          this.showErrorTimeout = null;
+        }
         this.setState({
           hasError: false,
+          showError: false,
+          error: null,
+          errorInfo: null,
         });
       }, 1500);
     }
   }
 
+  isNonCriticalError(error, errorInfo) {
+    // Check if error is related to image loading or other non-critical issues
+    const errorMessage = error?.message?.toLowerCase() || '';
+    const errorStack = errorInfo?.componentStack?.toLowerCase() || '';
+    
+    // Image loading errors are handled by browsers and shouldn't crash the app
+    if (errorMessage.includes('image') || errorMessage.includes('img')) {
+      return true;
+    }
+    
+    // Font loading errors are non-critical
+    if (errorMessage.includes('font') || errorMessage.includes('fontawesome')) {
+      return true;
+    }
+    
+    // Network errors for non-critical resources
+    if (errorMessage.includes('failed to fetch') || 
+        errorMessage.includes('network') ||
+        errorMessage.includes('loading chunk')) {
+      // Only consider it non-critical if it's not a critical resource
+      return true;
+    }
+    
+    // Chunk loading errors (common on first load) are often transient
+    if (errorMessage.includes('chunk') || errorMessage.includes('loading')) {
+      return true;
+    }
+    
+    return false;
+  }
+
   componentWillUnmount() {
-    // Clean up timeout
+    // Clean up timeouts
     if (this.retryTimeout) {
       clearTimeout(this.retryTimeout);
+    }
+    if (this.showErrorTimeout) {
+      clearTimeout(this.showErrorTimeout);
     }
   }
 
   handleReset = () => {
-    // Clear any pending retry
+    // Clear any pending timeouts
     if (this.retryTimeout) {
       clearTimeout(this.retryTimeout);
       this.retryTimeout = null;
+    }
+    if (this.showErrorTimeout) {
+      clearTimeout(this.showErrorTimeout);
+      this.showErrorTimeout = null;
     }
     
     // Reset retry count
@@ -62,13 +149,15 @@ class ErrorBoundary extends Component {
     
     this.setState({
       hasError: false,
+      showError: false,
       error: null,
       errorInfo: null,
     });
   };
 
   render() {
-    if (this.state.hasError) {
+    // Only show error UI if error persists and is critical
+    if (this.state.hasError && this.state.showError) {
       return (
         <div className="app" style={{ padding: "2rem", textAlign: "center" }}>
           <h1>Something went wrong.</h1>
@@ -105,6 +194,8 @@ class ErrorBoundary extends Component {
       );
     }
 
+    // If there's an error but we're not showing it yet (waiting period), render children
+    // This allows the app to continue rendering while we wait to see if error resolves
     return this.props.children;
   }
 }

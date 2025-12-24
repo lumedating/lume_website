@@ -121,7 +121,9 @@ function Team() {
               )
             }
           >
-            {fontAwesomeLoaded && <i className="fa-solid fa-sack-dollar money-bag-icon"></i>}
+            {fontAwesomeLoaded && (
+              <i className="fa-solid fa-sack-dollar money-bag-icon"></i>
+            )}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Apply for the</span>
               <span className="btn-text-large">Growth Team</span>
@@ -137,7 +139,9 @@ function Team() {
               )
             }
           >
-            {fontAwesomeLoaded && <i className="fa-brands fa-instagram instagram-logo"></i>}
+            {fontAwesomeLoaded && (
+              <i className="fa-brands fa-instagram instagram-logo"></i>
+            )}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">DM us on</span>
               <span className="btn-text-large">Instagram</span>

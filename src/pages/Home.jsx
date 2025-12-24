@@ -28,7 +28,7 @@ const games = [
   {
     name: "Green Flag?",
     description:
-      "For each contrivertial statement, guess if your match thinks it's a red flag or a green flag.",
+      "For each controversial statement, guess if your match thinks it's a red flag or a green flag.",
     background: greenFlagBackground,
     backgroundColor: "#00ed6b",
   },
@@ -87,7 +87,7 @@ function Home() {
       // Use requestAnimationFrame to ensure DOM is fully rendered
       requestAnimationFrame(() => {
         const elements = document.querySelectorAll(".animate-on-scroll");
-        
+
         // If no elements found, try again after a short delay (with retry limit)
         if (elements.length === 0 && retryCount < maxRetries) {
           retryCount++;
@@ -155,7 +155,9 @@ function Home() {
                 )
               }
             >
-              {fontAwesomeLoaded && <i className="fa-brands fa-apple apple-logo"></i>}
+              {fontAwesomeLoaded && (
+                <i className="fa-brands fa-apple apple-logo"></i>
+              )}
               <div className="btn-text-wrapper">
                 <span className="btn-text-small">Download on the</span>
                 <span className="btn-text-large">App Store</span>
@@ -265,7 +267,9 @@ function Home() {
               )
             }
           >
-            {fontAwesomeLoaded && <i className="fa-brands fa-apple apple-logo"></i>}
+            {fontAwesomeLoaded && (
+              <i className="fa-brands fa-apple apple-logo"></i>
+            )}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Download on the</span>
               <span className="btn-text-large">App Store</span>
@@ -281,7 +285,9 @@ function Home() {
               )
             }
           >
-            {fontAwesomeLoaded && <i className="fa-brands fa-instagram instagram-logo"></i>}
+            {fontAwesomeLoaded && (
+              <i className="fa-brands fa-instagram instagram-logo"></i>
+            )}
             <div className="btn-text-wrapper">
               <span className="btn-text-small">Follow us on</span>
               <span className="btn-text-large">Instagram</span>
