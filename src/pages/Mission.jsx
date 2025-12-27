@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "../App.css";
 import { useFontAwesome } from "../hooks/useFontAwesome";
-import img0428 from "../assets/images/gallery/IMG_0428.png";
 import img0506 from "../assets/images/gallery/IMG_0506.png";
 import img0507 from "../assets/images/gallery/IMG_0507.png";
 import img0509 from "../assets/images/gallery/IMG_0509 2.png";
 import img8214 from "../assets/images/gallery/IMG_8214.png";
 
-const galleryImages = [img0428, img0506, img0507, img0509, img8214];
+const galleryImages = [img0506, img0507, img0509, img8214];
 
 function Mission() {
   const [loadedImages, setLoadedImages] = useState(new Set());
