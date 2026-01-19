@@ -7,6 +7,7 @@ import greenFlagBackground from "../assets/images/Green Flag Background.png";
 import greenFlagScreenshot from "../assets/images/Green Flag Screenshot.png";
 import resultsWinScreenshot from "../assets/images/Results (Win) Screenshot.png";
 import resultsWinMatchScreenshot from "../assets/images/Results (Win - Match) Screenshot.png";
+import resultsWinProposeDateScreenshot from "../assets/images/Results (Win - Propose Date) Screenshot.png";
 import { useFontAwesome } from "../hooks/useFontAwesome";
 import "../App.css";
 
@@ -205,8 +206,8 @@ function Home() {
               IRL
             </p>
             <img
-              src={resultsWinMatchScreenshot}
-              alt="Results win match screenshot"
+              src={resultsWinProposeDateScreenshot}
+              alt="Results win propose date screenshot"
               className="step-screenshot"
             />
           </div>
