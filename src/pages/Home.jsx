@@ -202,8 +202,7 @@ function Home() {
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              If you both unlock each other's profiles, open up a chat or meet
-              IRL
+              If you both unlock each other's profiles, win a date at a local restaurant!
             </p>
             <img
               src={resultsWinProposeDateScreenshot}
