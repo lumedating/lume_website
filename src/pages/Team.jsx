@@ -7,9 +7,10 @@ import stephenNguyen from "../assets/images/team/Stephen Nguyen Image.jpg";
 import austinKeith from "../assets/images/team/Austin Keith Image.jpg";
 import natalieLiguez from "../assets/images/team/Natalie Liguez Image.jpg";
 import marioJaar from "../assets/images/team/Mario Jaar Image.jpg";
-import gabriellaBolanos from "../assets/images/team/Gabriella Bolanos Image.jpg";
 import liamPerry from "../assets/images/team/Liam Perry Image.PNG";
 import claytonLaney from "../assets/images/team/Clayton Laney Image.jpeg";
+import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
+import shimalTajale from "../assets/images/team/Shimal Tajale Image.JPG";
 
 const teamMembers = [
   {
@@ -43,11 +44,6 @@ const teamMembers = [
     image: marioJaar,
   },
   {
-    name: "Gabriella Bolanos",
-    position: "Growth Team Member",
-    image: gabriellaBolanos,
-  },
-  {
     name: "Liam Perry",
     position: "Growth Team Member",
     image: liamPerry,
@@ -56,6 +52,16 @@ const teamMembers = [
     name: "Clayton Laney",
     position: "Growth Team Member",
     image: claytonLaney,
+  },
+  {
+    name: "Katherine Nguyen",
+    position: "Growth Team Member",
+    image: katherineNguyen,
+  },
+  {
+    name: "Shimal Tajale",
+    position: "Software Developer",
+    image: shimalTajale,
   },
 ];
 
@@ -97,10 +103,10 @@ function Team() {
                   }`}
                   onLoad={() => handleImageLoad(index)}
                 />
-              </div>
-              <div className="team-card-info">
-                <h3 className="team-card-name">{member.name}</h3>
-                <p className="team-card-position">{member.position}</p>
+                <div className="team-card-info">
+                  <h3 className="team-card-name">{member.name}</h3>
+                  <p className="team-card-position">{member.position}</p>
+                </div>
               </div>
             </div>
           ))}
