@@ -12,6 +12,7 @@ import claytonLaney from "../assets/images/team/Clayton Laney Image.jpeg";
 import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
 import shimalTajale from "../assets/images/team/Shimal Tajale Image.JPG";
 import sohaAlam from "../assets/images/team/Soha Alam Image.jpg";
+import luckyCantu from "../assets/images/team/Lucky Cantu Image.jpeg";
 
 const teamMembers = [
   {
@@ -68,6 +69,11 @@ const teamMembers = [
     name: "Soha Alam",
     position: "Business Assistant",
     image: sohaAlam,
+  },
+  {
+    name: "Lucky Cantu",
+    position: "Growth Team Member",
+    image: luckyCantu,
   },
 ];
 
