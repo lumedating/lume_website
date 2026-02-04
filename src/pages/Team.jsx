@@ -46,7 +46,7 @@ const teamMembers = [
     image: marioJaar,
   },
   {
-    name: "Liam Perry",
+    name: "Liam Parry",
     position: "Growth Team Member",
     image: liamPerry,
   },
@@ -135,7 +135,7 @@ function Team() {
               window.open(
                 "https://forms.gle/F46kFj68XVCyRh2N8",
                 "_blank",
-                "noopener,noreferrer"
+                "noopener,noreferrer",
               )
             }
           >
@@ -153,7 +153,7 @@ function Team() {
               window.open(
                 "https://www.instagram.com/lumedating/",
                 "_blank",
-                "noopener,noreferrer"
+                "noopener,noreferrer",
               )
             }
           >
