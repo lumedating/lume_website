@@ -32,46 +32,45 @@ function Mission() {
       <section className="mission-section">
         <div className="mission-content">
           <p className="mission-paragraph">
-            We believe{" "}
+            Lume exists because{" "}
             <strong>
               <em style={{ color: "#C739FF" }}>
-                dating should be fun, not frustrating
+                choosing who you love is one of the most important decisions
+                you'll ever make
               </em>
             </strong>
-            . We believe college students deserve better than endless swiping
-            and empty conversations that go nowhere. We believe the best way to
-            build real relationships is through actual dates, not algorithms.
-            That's why we built Lume. Our mission is to{" "}
+            , yet dating is often treated like an afterthought. Strong romantic
+            relationships shape our happiness more than anything else (this is
+            proven), but{" "}
             <strong>
               <em style={{ color: "#C739FF" }}>
-                reverse the declining rate of dating among college students
+                college students are going on fewer dates than ever
               </em>
-            </strong>{" "}
-            by creating an experience that's engaging, authentic, and actually
-            gets people on dates. We're here to make dating fun again by turning
-            it into a game, and we're committed to aligning our success with
-            yours: we only win when you go out and meet people.
+            </strong>
+            . We think{" "}
+            <strong>
+              <em style={{ color: "#C739FF" }}>
+                dating deserves more intention and a lot more fun
+              </em>
+            </strong>
+            .
           </p>
           <p className="mission-paragraph">
-            While other dating apps profit from keeping you single and
-            scrolling, we've flipped the model entirely. Restaurants pay us to
-            suggest them as date spots, which means{" "}
+            With Lume, we remove the pressure of perfect profiles, endless
+            texting, and awkward small talk, and replace it with{" "}
             <strong>
               <em style={{ color: "#C739FF" }}>
-                we make money when you go on dates, not when you're stuck on our
-                app
+                games that lead to one simple win: actually going on a date
               </em>
             </strong>
-            . This fundamental shift means we're genuinely invested in your
-            success. We're not here to build a better matching algorithm or a
-            longer personality test. We're here to{" "}
+            . Our mission is to help students meet more people, learn what they
+            want, and{" "}
             <strong>
               <em style={{ color: "#C739FF" }}>
-                make dating less of a chore and more of a game
+                find the person to spend the rest of their life with
               </em>
             </strong>
-            , and to prove that when incentives align, technology can actually
-            help you find the connections you're seeking.
+            , all while genuinely enjoying the process.
           </p>
         </div>
       </section>
