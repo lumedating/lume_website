@@ -5,6 +5,7 @@ import wordUnscrambleBackground from "../assets/images/Word Unscramble Backgroun
 import rizzQuizBackground from "../assets/images/Rizz Quiz Background.png";
 import greenFlagBackground from "../assets/images/Green Flag Background.png";
 import greenFlagScreenshot from "../assets/images/Green Flag Screenshot.png";
+import rizzQuizScreenshot from "../assets/images/Rizz Quiz Screenshot.png";
 import resultsWinScreenshot from "../assets/images/Results (Win) Screenshot.png";
 import resultsWinMatchScreenshot from "../assets/images/Results (Win - Match) Screenshot.png";
 import resultsWinProposeDateScreenshot from "../assets/images/Results (Win - Propose Date) Screenshot.png";
@@ -142,9 +143,8 @@ function Home() {
               The mobile dating game
             </h1>
             <p className="hero-description animate-on-scroll">
-              We built a dating game show in your pocket! Play quick games to
-              learn more about potential matches, unlock their profiles, and go
-              on dates.
+              We built a dating game show in your pocket! Play games, unlock
+              profiles, and go on dates with other UT students.
             </p>
             <button
               className="btn-app-store"
@@ -152,7 +152,7 @@ function Home() {
                 window.open(
                   "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
                   "_blank",
-                  "noopener,noreferrer"
+                  "noopener,noreferrer",
                 )
               }
             >
@@ -184,8 +184,8 @@ function Home() {
               profile
             </p>
             <img
-              src={greenFlagScreenshot}
-              alt="Green Flag game screenshot"
+              src={rizzQuizScreenshot}
+              alt="Rizz Quiz game screenshot"
               className="step-screenshot"
             />
           </div>
@@ -202,7 +202,8 @@ function Home() {
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              If you both unlock each other's profiles, win a date at a local restaurant!
+              If you both unlock each other's profiles, go on a date at a local
+              restaurant!
             </p>
             <img
               src={resultsWinProposeDateScreenshot}
@@ -263,7 +264,7 @@ function Home() {
               window.open(
                 "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
                 "_blank",
-                "noopener,noreferrer"
+                "noopener,noreferrer",
               )
             }
           >
@@ -281,7 +282,7 @@ function Home() {
               window.open(
                 "https://www.instagram.com/lumeapp/",
                 "_blank",
-                "noopener,noreferrer"
+                "noopener,noreferrer",
               )
             }
           >
