@@ -545,6 +545,7 @@
 .step-text {
   font-family: "DM Sans", sans-serif;
   font-size: 1.5rem;
+  font-weight: 600;
   color: #ffffff;
   line-height: 1.6;
   margin: 0;
@@ -557,7 +558,7 @@
   object-fit: contain;
   border-radius: 0.75rem;
   position: absolute;
-  bottom: -35%;
+  bottom: -30%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -979,7 +980,7 @@
   .step-screenshot {
     width: 250%;
     max-height: 350px;
-    bottom: -25%;
+    bottom: -15%;
   }
 
   .games {

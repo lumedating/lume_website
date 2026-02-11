@@ -180,8 +180,9 @@ function Home() {
         <div className="how-it-works-content">
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              Play a quick game to get to know another student with a locked
-              profile
+              Profile starts blurred.
+              <br />
+              Play a game to reveal.
             </p>
             <img
               src={rizzQuizScreenshot}
@@ -191,8 +192,9 @@ function Home() {
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              If you win, you unlock their profile and reveal their photos and
-              info!
+              Win? Reveal their profile!
+              <br />
+              Then choose 👍 or 👎
             </p>
             <img
               src={resultsWinScreenshot}
@@ -202,8 +204,9 @@ function Home() {
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              If you both unlock each other's profiles, go on a date at a local
-              restaurant!
+              If you both choose 👍
+              <br />
+              Earn a date to meet IRL!
             </p>
             <img
               src={resultsWinProposeDateScreenshot}
