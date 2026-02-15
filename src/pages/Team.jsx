@@ -64,16 +64,6 @@ const teamMembers = [
     image: katherineNguyen,
   },
   {
-    name: "Shimal Tajale",
-    position: "Software Developer",
-    image: shimalTajale,
-  },
-  {
-    name: "Soha Alam",
-    position: "Business Assistant",
-    image: sohaAlam,
-  },
-  {
     name: "Lucky Cantu",
     position: "Growth Team Member",
     image: luckyCantu,
@@ -89,9 +79,19 @@ const teamMembers = [
     image: lucyPhenix,
   },
   {
+    name: "Shimal Tajale",
+    position: "Software Developer",
+    image: shimalTajale,
+  },
+  {
     name: "Raghav Kalyanaraman",
-    position: "Growth Team Member",
+    position: "Software Developer",
     image: raghavK,
+  },
+  {
+    name: "Soha Alam",
+    position: "Business Assistant",
+    image: sohaAlam,
   },
 ];
 
