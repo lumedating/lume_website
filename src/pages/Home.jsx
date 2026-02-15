@@ -283,7 +283,7 @@ function Home() {
             className="btn-instagram"
             onClick={() =>
               window.open(
-                "https://www.instagram.com/lumeapp/",
+                "https://www.instagram.com/lumedating/",
                 "_blank",
                 "noopener,noreferrer",
               )
