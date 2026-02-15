@@ -13,6 +13,9 @@ import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
 import shimalTajale from "../assets/images/team/Shimal Tajale Image.JPG";
 import sohaAlam from "../assets/images/team/Soha Alam Image.jpg";
 import luckyCantu from "../assets/images/team/Lucky Cantu Image.jpeg";
+import bellaOtte from "../assets/images/team/Bella Otte Image.jpg";
+import lucyPhenix from "../assets/images/team/Lucy Phenix Image.jpg";
+import raghavK from "../assets/images/team/Raghav K Image.JPG";
 
 const teamMembers = [
   {
@@ -74,6 +77,21 @@ const teamMembers = [
     name: "Lucky Cantu",
     position: "Growth Team Member",
     image: luckyCantu,
+  },
+  {
+    name: "Bella Otte",
+    position: "Growth Team Member",
+    image: bellaOtte,
+  },
+  {
+    name: "Lucy Phenix",
+    position: "Growth Team Member",
+    image: lucyPhenix,
+  },
+  {
+    name: "Raghav Kalyanaraman",
+    position: "Growth Team Member",
+    image: raghavK,
   },
 ];
 
