@@ -16,6 +16,8 @@ import luckyCantu from "../assets/images/team/Lucky Cantu Image.jpeg";
 import bellaOtte from "../assets/images/team/Bella Otte Image.jpg";
 import lucyPhenix from "../assets/images/team/Lucy Phenix Image.jpg";
 import raghavK from "../assets/images/team/Raghav K Image.JPG";
+import michaelRice from "../assets/images/team/Michael Rice Image.png";
+import diegoSalinas from "../assets/images/team/Diego Salinas Image.jpg";
 
 const teamMembers = [
   {
@@ -77,6 +79,16 @@ const teamMembers = [
     name: "Lucy Phenix",
     position: "Growth Team Member",
     image: lucyPhenix,
+  },
+  {
+    name: "Michael Rice",
+    position: "Growth Team Member",
+    image: michaelRice,
+  },
+  {
+    name: "Diego Salinas",
+    position: "Growth Team Member",
+    image: diegoSalinas,
   },
   {
     name: "Shimal Tajale",
