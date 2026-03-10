@@ -22,6 +22,9 @@ function Footer() {
           >
             Instagram
           </a>
+          <a href="/PrivacyPolicy" className="site-footer-link">
+            Privacy Policy
+          </a>
         </div>
       </div>
     </footer>
