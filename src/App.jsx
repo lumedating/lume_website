@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Mission from "./pages/Mission";
 import Team from "./pages/Team";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -244,6 +245,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/mission" element={<Mission />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
