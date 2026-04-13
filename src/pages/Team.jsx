@@ -5,15 +5,12 @@ import tannerKopel from "../assets/images/team/Tanner Kopel Image.jpg";
 import anthonyLuparello from "../assets/images/team/Anthony Luparello Image.jpg";
 import stephenNguyen from "../assets/images/team/Stephen Nguyen Image.jpg";
 import austinKeith from "../assets/images/team/Austin Keith Image.jpg";
-import natalieLiguez from "../assets/images/team/Natalie Liguez Image.jpg";
 import marioJaar from "../assets/images/team/Mario Jaar Image.jpg";
-import liamPerry from "../assets/images/team/Liam Perry Image.PNG";
 import claytonLaney from "../assets/images/team/Clayton Laney Image.jpeg";
 import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
 import shimalTajale from "../assets/images/team/Shimal Tajale Image.JPG";
 import sohaAlam from "../assets/images/team/Soha Alam Image.jpg";
 import luckyCantu from "../assets/images/team/Lucky Cantu Image.jpeg";
-import raghavK from "../assets/images/team/Raghav K Image.JPG";
 import michaelRice from "../assets/images/team/Michael Rice Image.png";
 import diegoSalinas from "../assets/images/team/Diego Salinas Image.jpg";
 
@@ -39,19 +36,9 @@ const teamMembers = [
     image: austinKeith,
   },
   {
-    name: "Natalie Liguez",
-    position: "Growth Team Member",
-    image: natalieLiguez,
-  },
-  {
     name: "Mario Jaar",
     position: "Growth Team Member",
     image: marioJaar,
-  },
-  {
-    name: "Liam Parry",
-    position: "Growth Team Member",
-    image: liamPerry,
   },
   {
     name: "Clayton Laney",
@@ -82,11 +69,6 @@ const teamMembers = [
     name: "Shimal Tajale",
     position: "Software Developer",
     image: shimalTajale,
-  },
-  {
-    name: "Raghav Kalyanaraman",
-    position: "Software Developer",
-    image: raghavK,
   },
   {
     name: "Soha Alam",

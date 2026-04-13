@@ -10,7 +10,16 @@ import imgLumeVsTinder from "../assets/images/gallery/Lume VS Tinder Content.PNG
 import imgPolarPlunge from "../assets/images/gallery/Polar Plunge Lume Challenge.png";
 import imgRakuSushi from "../assets/images/gallery/Raku Sushi Table Card.JPEG";
 
-const galleryImages = [img0506, img0507, img0509, img8214, imgCandyCanes, imgLumeVsTinder, imgPolarPlunge, imgRakuSushi];
+const galleryImages = [
+  img0506,
+  img0507,
+  img0509,
+  img8214,
+  imgCandyCanes,
+  imgLumeVsTinder,
+  imgPolarPlunge,
+  imgRakuSushi,
+];
 
 function Mission() {
   const [loadedImages, setLoadedImages] = useState(new Set());
@@ -68,7 +77,10 @@ function Mission() {
     const container = containerRef.current;
     if (!container) return;
 
-    const onWheel = () => { pauseAutoScroll(); resumeAutoScroll(); };
+    const onWheel = () => {
+      pauseAutoScroll();
+      resumeAutoScroll();
+    };
     const onTouchStart = () => pauseAutoScroll();
     const onTouchEnd = () => resumeAutoScroll();
     const onMouseDown = () => pauseAutoScroll();

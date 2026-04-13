@@ -1,83 +1,14 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import heroScreenshots from "../assets/images/Lume Website Hero Screenshots.png";
-import gameWheel from "../assets/images/Game Wheel.png";
-import wordUnscrambleBackground from "../assets/images/Word Unscramble Background.png";
-import rizzQuizBackground from "../assets/images/Rizz Quiz Background.png";
-import greenFlagBackground from "../assets/images/Green Flag Background.png";
-import greenFlagScreenshot from "../assets/images/Green Flag Screenshot.png";
-import rizzQuizScreenshot from "../assets/images/Rizz Quiz Screenshot.png";
-import resultsWinScreenshot from "../assets/images/Results (Win) Screenshot.png";
-import resultsWinMatchScreenshot from "../assets/images/Results (Win - Match) Screenshot.png";
-import resultsWinProposeDateScreenshot from "../assets/images/Results (Win - Propose Date) Screenshot.png";
+import homeScreenshot from "../assets/images/Home Screenshot.png";
+import gameScreenshot from "../assets/images/Game Screenshot.png";
+import dateDetailsScreenshot from "../assets/images/Date Details Screenshot.png";
 import { useFontAwesome } from "../hooks/useFontAwesome";
 import "../App.css";
 
-const games = [
-  {
-    name: "Word Unscramble",
-    description:
-      "Reveal the answer to your opponent's question by unscrambling the letters before time runs out.",
-    background: wordUnscrambleBackground,
-    backgroundColor: "#ffd900",
-  },
-  {
-    name: "Rizz Quiz",
-    description:
-      "Test your knowledge of pickup line rizz and see if you can guess which one your match would respond to.",
-    background: rizzQuizBackground,
-    backgroundColor: "#de2c2c",
-  },
-  {
-    name: "Green Flag?",
-    description:
-      "For each controversial statement, guess if your match thinks it's a red flag or a green flag.",
-    background: greenFlagBackground,
-    backgroundColor: "#00ed6b",
-  },
-];
-
 function Home() {
-  const [currentGameIndex, setCurrentGameIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const fontAwesomeLoaded = useFontAwesome();
   const observerRef = useRef(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  useEffect(() => {
-    const animationDuration = 12000; // 12 seconds for full rotation
-    const gameDuration = animationDuration / games.length; // 4 seconds per game
-
-    const updateGameIndex = () => {
-      const startTime = performance.now();
-      let animationFrameId;
-
-      const animate = (currentTime) => {
-        const elapsed = (currentTime - startTime) % animationDuration;
-        const newIndex = Math.floor((elapsed / gameDuration) % games.length);
-        setCurrentGameIndex(newIndex);
-        animationFrameId = requestAnimationFrame(animate);
-      };
-
-      animationFrameId = requestAnimationFrame(animate);
-
-      return () => {
-        if (animationFrameId) {
-          cancelAnimationFrame(animationFrameId);
-        }
-      };
-    };
-
-    const cleanup = updateGameIndex();
-    return cleanup;
-  }, []);
 
   useEffect(() => {
     // Wait for DOM to be ready and elements to exist before querying
@@ -131,8 +62,6 @@ function Home() {
     };
   }, []);
 
-  const currentGame = games[currentGameIndex];
-
   return (
     <>
       {/* Hero Section */}
@@ -143,8 +72,8 @@ function Home() {
               The mobile dating game
             </h1>
             <p className="hero-description animate-on-scroll">
-              We built a dating game show in your pocket! Play games, unlock
-              profiles, and go on dates with other UT students.
+              We built a dating game show in your pocket! Every day, Lume drops
+              you one match from UT. Play a game to try to win the date.
             </p>
             <button
               className="btn-app-store"
@@ -180,79 +109,39 @@ function Home() {
         <div className="how-it-works-content">
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              Profile starts blurred.
+              Curated matches from UT.
               <br />
-              Play a game to reveal.
+              Dropped randomly once a day.
             </p>
             <img
-              src={rizzQuizScreenshot}
-              alt="Rizz Quiz game screenshot"
+              src={homeScreenshot}
+              alt="Lume home screen"
               className="step-screenshot"
             />
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              Win? Reveal their profile!
+              Play trivia about your match.
               <br />
-              Then choose 👍 or 👎
+              Win? You're going on a date!
             </p>
             <img
-              src={resultsWinScreenshot}
-              alt="Results win screenshot"
+              src={gameScreenshot}
+              alt="Game screenshot"
               className="step-screenshot"
             />
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              If you both choose 👍
+              Lume plans the date for you.
               <br />
-              Earn a date to meet IRL!
+              Just show up and enjoy.
             </p>
             <img
-              src={resultsWinProposeDateScreenshot}
-              alt="Results win propose date screenshot"
+              src={dateDetailsScreenshot}
+              alt="Date details screenshot"
               className="step-screenshot"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Games Section */}
-      <section
-        className="games"
-        style={{
-          backgroundImage: `url(${currentGame.background})`,
-          backgroundColor: currentGame.backgroundColor,
-        }}
-      >
-        <div className="games-content">
-          <div className="games-left">
-            <img
-              src={gameWheel}
-              alt="Game wheel"
-              className="game-wheel-image"
-            />
-          </div>
-          <div className="games-center">
-            <button className="btn-what-are-games">WHAT ARE THE GAMES?</button>
-            <h2
-              key={currentGameIndex}
-              className="game-title game-text-animate"
-              style={{
-                color: currentGame.name === "Rizz Quiz" ? "#ffffff" : "#000000",
-              }}
-            >
-              {currentGame.name}
-            </h2>
-            <p
-              key={`desc-${currentGameIndex}`}
-              className="game-description game-text-animate"
-              style={{
-                color: currentGame.name === "Rizz Quiz" ? "#ffffff" : "#000000",
-              }}
-            >
-              {currentGame.description}
-            </p>
           </div>
         </div>
       </section>
