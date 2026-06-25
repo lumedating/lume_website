@@ -819,6 +819,20 @@
 }
 
 @media (max-width: 768px) {
+  .header,
+  .hero,
+  .mission-hero,
+  .mission-section,
+  .team-section,
+  .gallery-section,
+  .how-it-works,
+  .games,
+  .footer,
+  .site-footer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .header {
     padding: 1.5rem 2rem;
   }
@@ -929,7 +943,6 @@
   }
 
   .gallery-section {
-    margin: 12px 12px;
     height: 300px;
   }
 
@@ -983,7 +996,7 @@
 
   .how-it-works-content {
     gap: 12px;
-    padding: 0 12px;
+    padding: 0;
   }
 
   .step-number {
