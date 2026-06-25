@@ -123,14 +123,17 @@
 }
 
 .btn-get-lume {
-  background-color: #b700ff;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
   padding: 0.75rem 1.5rem;
   border-radius: 1.5rem;
   font-size: 1rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   transition: opacity 0.2s;
-  box-shadow: 2px 2px 0 #8800bd;
+  box-shadow: 2px 2px 0 #cccccc;
 }
 
 .btn-get-lume:hover {
@@ -149,6 +152,19 @@
   border-radius: 36px;
   position: relative;
   overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("./assets/Dot Background.png");
+  background-repeat: repeat;
+  background-size: 536px 363px;
+  mix-blend-mode: screen;
+  opacity: 0.75;
+  pointer-events: none;
 }
 
 /* Mission Hero Section */
@@ -176,7 +192,7 @@
 
 .mission-title {
   font-family: "Bowlby One", sans-serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   line-height: 1.1;
   color: #ffffff;
   text-align: center;
@@ -285,7 +301,7 @@
 
 .team-card-name {
   font-family: "Bowlby One", sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
@@ -404,6 +420,7 @@
   align-items: center;
   gap: 4rem;
   position: relative;
+  z-index: 1;
   overflow: visible;
 }
 
@@ -414,7 +431,7 @@
 
 .hero-title {
   font-family: "Bowlby One", sans-serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   line-height: 1.1;
   color: #ffffff;
   margin-bottom: 1.5rem;
@@ -639,7 +656,7 @@
 
 .game-title {
   font-family: "Bowlby One", sans-serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: #000000;
   line-height: 1.1;
   transition: opacity 0.5s ease-in-out;
@@ -674,7 +691,7 @@
 
 .footer-text {
   font-family: "Bowlby One", sans-serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: #ffffff;
   text-align: center;
 }
@@ -687,24 +704,6 @@
 }
 
 .btn-app-store-footer {
-  background-color: #b700ff;
-  color: #ffffff;
-  padding: 1rem 1.5rem;
-  border-radius: 9999px;
-  font-size: 1rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  transition: all 0.2s ease;
-  box-shadow: 2px 2px 0 #8800bd;
-}
-
-.btn-app-store-footer:hover {
-  opacity: 0.8;
-}
-
-.btn-instagram {
   background-color: #ffffff;
   color: #000000;
   padding: 1rem 1.5rem;
@@ -716,6 +715,24 @@
   gap: 1.25rem;
   transition: all 0.2s ease;
   box-shadow: 2px 2px 0 #cccccc;
+}
+
+.btn-app-store-footer:hover {
+  opacity: 0.8;
+}
+
+.btn-instagram {
+  background-color: #b700ff;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #8800bd;
 }
 
 .btn-instagram:hover {
@@ -866,7 +883,7 @@
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
     height: calc(100vh - 88px);
-    overflow-y: auto;
+    overflow: hidden;
   }
 
   .nav.nav-open {
@@ -882,7 +899,7 @@
 
   .nav .btn-get-lume {
     width: 100%;
-    text-align: center;
+    justify-content: center;
   }
 
   .hero {
@@ -896,7 +913,7 @@
   }
 
   .mission-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .mission-section {
@@ -952,7 +969,7 @@
   }
 
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .hero-description {
@@ -975,6 +992,10 @@
 
   .step-panel {
     height: 450px;
+  }
+
+  .step-text {
+    font-size: 1.25rem;
   }
 
   .step-screenshot {
@@ -1038,7 +1059,7 @@
   }
 
   .game-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .game-description {
@@ -1046,7 +1067,7 @@
   }
 
   .footer-text {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .footer-buttons {
