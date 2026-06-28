@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logoIcon from "../assets/images/Lume App Icon.png";
 import { useFontAwesome } from "../hooks/useFontAwesome";
+import { SHOW_PROMO_BANNER } from "../config/site";
 import "../App.css";
 
 function Header() {
@@ -62,11 +63,22 @@ function Header() {
   };
 
   return (
-    <header
-      className={`header ${
-        isHeaderVisible ? "header-visible" : "header-hidden"
+    <div
+      className={`site-header ${
+        isHeaderVisible ? "site-header-visible" : "site-header-hidden"
       }`}
     >
+      {SHOW_PROMO_BANNER && (
+        <a
+          className="promo-banner"
+          href="https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download Lume now and we&apos;ll pay for your first date!
+        </a>
+      )}
+      <header className="header">
       <div className="header-content">
         <Link
           to="/"
@@ -135,7 +147,8 @@ function Header() {
           </button>
         </nav>
       </div>
-    </header>
+      </header>
+    </div>
   );
 }
 

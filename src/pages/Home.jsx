@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import heroScreenshots from "../assets/images/Lume Website Hero Screenshots.png";
 import homeScreenshot from "../assets/images/Home Screenshot.png";
 import gameScreenshot from "../assets/images/Game Screenshot.png";
@@ -6,9 +6,83 @@ import dateDetailsScreenshot from "../assets/images/Date Details Screenshot.png"
 import { useFontAwesome } from "../hooks/useFontAwesome";
 import "../App.css";
 
+const FAQ_ITEMS = [
+  {
+    question: "how do you pick my matches each day?",
+    answer:
+      "Lume uses AI to analyze your profile, including your interests, hobbies, ambitions, and more, and compares it with other users to find your most compatible match. You get one curated match dropped each day at a random time.",
+  },
+  {
+    question: "how do you verify users to make sure they go to UT?",
+    answer:
+      "Every new user must sign up with a verified @utexas.edu email before creating an account. That way, only real UT Austin students are on Lume.",
+  },
+  {
+    question: "what happens if i lose the game?",
+    answer:
+      "If you lose the game, you won't get to go on a date with that day's match. You'll get a fresh chance to play again tomorrow with an equally great match.",
+  },
+  {
+    question: "what happens after I win the game?",
+    answer:
+      "If you and your match both win and say yes to a date, Lume plans it for you based on both of your availability. We'll provide the date, time, and location, and all you have to do is show up.",
+  },
+];
+
+function FaqItem({ item, isOpen, onToggle, fontAwesomeLoaded }) {
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    const content = contentRef.current;
+    if (!content) return;
+
+    setHeight(isOpen ? content.scrollHeight : 0);
+  }, [isOpen, item.answer]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const updateHeight = () => {
+      if (contentRef.current) {
+        setHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [isOpen, item.answer]);
+
+  return (
+    <div className={`faq-item${isOpen ? " faq-item-open" : ""}`}>
+      <button
+        type="button"
+        className="faq-question"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+      >
+        <span>{item.question}</span>
+        {fontAwesomeLoaded && (
+          <i className="fa-solid fa-chevron-down faq-chevron"></i>
+        )}
+      </button>
+      <div
+        className="faq-answer-wrapper"
+        style={{ height: `${height}px` }}
+        aria-hidden={!isOpen}
+      >
+        <div ref={contentRef} className="faq-answer-inner">
+          <p className="faq-answer">{item.answer}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Home() {
   const fontAwesomeLoaded = useFontAwesome();
   const observerRef = useRef(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   useEffect(() => {
     // Wait for DOM to be ready and elements to exist before querying
@@ -112,9 +186,7 @@ function Home() {
         <div className="how-it-works-content">
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              Curated matches from UT.
-              <br />
-              Dropped randomly once a day.
+              We drop you a curated match at a random time every day.
             </p>
             <img
               src={homeScreenshot}
@@ -124,9 +196,7 @@ function Home() {
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              Play trivia about your match.
-              <br />
-              Win? You're going on a date!
+              Play a quick, Kahoot-style game about your match.
             </p>
             <img
               src={gameScreenshot}
@@ -136,9 +206,7 @@ function Home() {
           </div>
           <div className="step-panel">
             <p className="step-text animate-on-scroll">
-              Lume plans the date for you.
-              <br />
-              Just show up and enjoy.
+              Win the game, win the date! We’ll plan everything 😉
             </p>
             <img
               src={dateDetailsScreenshot}
@@ -146,6 +214,23 @@ function Home() {
               className="step-screenshot"
             />
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="faq-section">
+        <div className="faq-container">
+          {FAQ_ITEMS.map((item, index) => (
+            <FaqItem
+              key={item.question}
+              item={item}
+              isOpen={openFaqIndex === index}
+              onToggle={() =>
+                setOpenFaqIndex(openFaqIndex === index ? null : index)
+              }
+              fontAwesomeLoaded={fontAwesomeLoaded}
+            />
+          ))}
         </div>
       </section>
 

@@ -3,6 +3,15 @@
   min-height: 100vh;
   background-color: #111111;
   color: #ffffff;
+  --header-nav-height: 88px;
+  --promo-banner-height: 0px;
+  --site-header-offset: calc(
+    var(--header-nav-height) + var(--promo-banner-height)
+  );
+}
+
+.app.has-promo-banner {
+  --promo-banner-height: 40px;
 }
 
 /* Animations */
@@ -46,11 +55,72 @@
 }
 
 /* Header */
-.header {
+.site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.site-header-visible {
+  transform: translateY(0);
+}
+
+.site-header-hidden {
+  transform: translateY(-100%);
+}
+
+.promo-banner {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background-color: #b700ff;
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s;
+}
+
+.promo-banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 65%
+  );
+  animation: promo-banner-shine 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes promo-banner-shine {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+.promo-banner:hover {
+  opacity: 0.9;
+}
+
+.header {
   margin: 0 12px;
   height: 88px;
   padding: 0 4rem;
@@ -58,16 +128,6 @@
   justify-content: center;
   align-items: center;
   background-color: #111111;
-  z-index: 1000;
-  transition: transform 0.3s ease-in-out;
-}
-
-.header-visible {
-  transform: translateY(0);
-}
-
-.header-hidden {
-  transform: translateY(-100%);
 }
 
 .header-content {
@@ -143,8 +203,8 @@
 /* Hero Section */
 .hero {
   margin: 12px 12px;
-  margin-top: 88px;
-  height: calc(100vh - 112px);
+  margin-top: var(--site-header-offset);
+  height: calc(100vh - var(--site-header-offset) - 24px);
   padding: 4rem 4rem;
   display: flex;
   justify-content: center;
@@ -170,7 +230,7 @@
 /* Mission Hero Section */
 .mission-hero {
   margin: 12px 12px;
-  margin-top: 88px;
+  margin-top: var(--site-header-offset);
   height: 250px;
   padding: 4rem 4rem;
   display: flex;
@@ -677,6 +737,71 @@
   animation: slideInRight 0.6s ease-out 0.2s both;
 }
 
+/* FAQ Section */
+.faq-section {
+  margin: 12px 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.faq-container {
+  width: 100%;
+  background-color: #1b1b1b;
+  border-radius: 36px;
+  padding: 8rem;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-item:first-child .faq-question {
+  padding-top: 0;
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  opacity: 0.75;
+  transition: transform 0.3s ease;
+}
+
+.faq-item-open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-answer-wrapper {
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.faq-answer {
+  margin: 0;
+  padding: 0.125rem 0 1.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
 /* Footer */
 .footer {
   margin: 1rem 12px;
@@ -826,11 +951,17 @@
   .team-section,
   .gallery-section,
   .how-it-works,
+  .faq-section,
   .games,
   .footer,
   .site-footer {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .promo-banner {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 
   .header {
@@ -885,7 +1016,7 @@
 
   .nav {
     position: fixed;
-    top: 88px;
+    top: var(--site-header-offset);
     left: 0;
     right: 0;
     background-color: #111111;
@@ -896,7 +1027,7 @@
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
-    height: calc(100vh - 88px);
+    height: calc(100vh - var(--site-header-offset));
     overflow: hidden;
   }
 
@@ -918,7 +1049,7 @@
 
   .hero {
     padding: 2rem 1rem 4rem;
-    height: calc(100vh - 100px);
+    height: calc(100vh - var(--site-header-offset) - 12px);
   }
 
   .mission-hero {
@@ -1015,6 +1146,20 @@
     width: 250%;
     max-height: 350px;
     bottom: -15%;
+  }
+
+  .faq-container {
+    padding: 2rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+    padding: 1.25rem 0;
+  }
+
+  .faq-answer {
+    font-size: 0.9375rem;
+    padding: 0.125rem 0 1.25rem;
   }
 
   .games {

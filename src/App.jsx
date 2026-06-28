@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from "react-router-dom";
 import { useEffect, Component } from "react";
+import { SHOW_PROMO_BANNER } from "./config/site";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -238,7 +239,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <div className="app">
+        <div className={`app${SHOW_PROMO_BANNER ? " has-promo-banner" : ""}`}>
           <ScrollToHash />
           <Header />
           <Routes>
