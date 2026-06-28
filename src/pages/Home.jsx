@@ -4,6 +4,7 @@ import homeScreenshot from "../assets/images/Home Screenshot.png";
 import gameScreenshot from "../assets/images/Game Screenshot.png";
 import dateDetailsScreenshot from "../assets/images/Date Details Screenshot.png";
 import { useFontAwesome } from "../hooks/useFontAwesome";
+import FooterConfetti from "../components/FooterConfetti";
 import "../App.css";
 
 const FAQ_ITEMS = [
@@ -82,7 +83,10 @@ function FaqItem({ item, isOpen, onToggle, fontAwesomeLoaded }) {
 function Home() {
   const fontAwesomeLoaded = useFontAwesome();
   const observerRef = useRef(null);
+  const footerRef = useRef(null);
+  const hasConfettiFiredRef = useRef(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [showFooterConfetti, setShowFooterConfetti] = useState(false);
 
   useEffect(() => {
     // Wait for DOM to be ready and elements to exist before querying
@@ -134,6 +138,25 @@ function Home() {
         observerRef.current = null;
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasConfettiFiredRef.current) {
+          hasConfettiFiredRef.current = true;
+          setShowFooterConfetti(true);
+        }
+      },
+      { threshold: 0.4 },
+    );
+
+    observer.observe(footer);
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -235,7 +258,10 @@ function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" ref={footerRef}>
+        {showFooterConfetti && (
+          <FooterConfetti onComplete={() => setShowFooterConfetti(false)} />
+        )}
         <h2 className="footer-text">Click these if you're cool</h2>
         <div className="footer-buttons">
           <button

@@ -1,9 +1,10 @@
+import { Component, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from "react-router-dom";
-import { useEffect, Component } from "react";
 import { SHOW_PROMO_BANNER } from "./config/site";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import LoadingScreen from "./components/LoadingScreen";
 import Home from "./pages/Home";
 import Mission from "./pages/Mission";
 import Team from "./pages/Team";
@@ -236,8 +237,53 @@ function NotFound() {
 }
 
 function App() {
+  const [loaderPhase, setLoaderPhase] = useState("loading");
+
+  useEffect(() => {
+    let exitTimeoutId;
+    let removeTimeoutId;
+    let hasStartedExit = false;
+    const startTime = Date.now();
+    const minDuration = 600;
+    const exitDuration = 400;
+
+    const beginExit = () => {
+      if (hasStartedExit) return;
+      hasStartedExit = true;
+
+      const elapsed = Date.now() - startTime;
+      const delay = Math.max(0, minDuration - elapsed);
+
+      exitTimeoutId = setTimeout(() => {
+        setLoaderPhase("exiting");
+        removeTimeoutId = setTimeout(() => {
+          setLoaderPhase("done");
+        }, exitDuration);
+      }, delay);
+    };
+
+    if (document.readyState === "complete") {
+      beginExit();
+    } else {
+      window.addEventListener("load", beginExit, { once: true });
+    }
+
+    const maxTimeoutId = setTimeout(beginExit, 5000);
+
+    return () => {
+      window.removeEventListener("load", beginExit);
+      clearTimeout(exitTimeoutId);
+      clearTimeout(removeTimeoutId);
+      clearTimeout(maxTimeoutId);
+    };
+  }, []);
+
   return (
-    <ErrorBoundary>
+    <>
+      {loaderPhase !== "done" && (
+        <LoadingScreen exiting={loaderPhase === "exiting"} />
+      )}
+      <ErrorBoundary>
       <Router>
         <div className={`app${SHOW_PROMO_BANNER ? " has-promo-banner" : ""}`}>
           <ScrollToHash />
@@ -253,6 +299,7 @@ function App() {
         </div>
       </Router>
     </ErrorBoundary>
+    </>
   );
 }
 
