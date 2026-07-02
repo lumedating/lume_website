@@ -166,9 +166,11 @@ function Home() {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title animate-on-scroll">
-              The Dating Game
+              The Dating
               <br />
-              for UT Austin
+              Game for
+              <br />
+              UT Austin
             </h1>
             <p className="hero-description animate-on-scroll">
               Every day, Lume drops a new match. Play a quick Kahoot-like trivia
@@ -176,7 +178,7 @@ function Home() {
               date!
             </p>
             <button
-              className="btn-app-store"
+              className="btn-app-store hero-app-store-btn"
               onClick={() =>
                 window.open(
                   "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
@@ -265,7 +267,7 @@ function Home() {
         <h2 className="footer-text">Click these if you're cool</h2>
         <div className="footer-buttons">
           <button
-            className="btn-app-store-footer"
+            className="btn-app-store-footer btn-cta"
             onClick={() =>
               window.open(
                 "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
@@ -277,13 +279,14 @@ function Home() {
             {fontAwesomeLoaded && (
               <i className="fa-brands fa-apple apple-logo"></i>
             )}
-            <div className="btn-text-wrapper">
+            <div className="btn-text-wrapper btn-cta-label-desktop">
               <span className="btn-text-small">Download on the</span>
               <span className="btn-text-large">App Store</span>
             </div>
+            <span className="btn-cta-label-mobile">Get Lume</span>
           </button>
           <button
-            className="btn-instagram"
+            className="btn-instagram btn-cta"
             onClick={() =>
               window.open(
                 "https://www.instagram.com/lumedating/",
@@ -295,10 +298,11 @@ function Home() {
             {fontAwesomeLoaded && (
               <i className="fa-brands fa-instagram instagram-logo"></i>
             )}
-            <div className="btn-text-wrapper">
+            <div className="btn-text-wrapper btn-cta-label-desktop">
               <span className="btn-text-small">Follow us on</span>
               <span className="btn-text-large">Instagram</span>
             </div>
+            <span className="btn-cta-label-mobile">Follow Our Instagram</span>
           </button>
         </div>
       </footer>

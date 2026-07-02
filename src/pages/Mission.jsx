@@ -208,7 +208,7 @@ function Mission() {
         <h2 className="footer-text">Want to help us on our mission?</h2>
         <div className="footer-buttons">
           <button
-            className="btn-app-store-footer"
+            className="btn-app-store-footer btn-cta"
             onClick={() =>
               window.open(
                 "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
@@ -220,13 +220,14 @@ function Mission() {
             {fontAwesomeLoaded && (
               <i className="fa-brands fa-apple apple-logo"></i>
             )}
-            <div className="btn-text-wrapper">
+            <div className="btn-text-wrapper btn-cta-label-desktop">
               <span className="btn-text-small">Download on the</span>
               <span className="btn-text-large">App Store</span>
             </div>
+            <span className="btn-cta-label-mobile">Get Lume</span>
           </button>
           <button
-            className="btn-instagram"
+            className="btn-instagram btn-cta"
             onClick={() =>
               window.open(
                 "https://www.instagram.com/lumedating/",
@@ -238,10 +239,11 @@ function Mission() {
             {fontAwesomeLoaded && (
               <i className="fa-brands fa-instagram instagram-logo"></i>
             )}
-            <div className="btn-text-wrapper">
+            <div className="btn-text-wrapper btn-cta-label-desktop">
               <span className="btn-text-small">Follow us on</span>
               <span className="btn-text-large">Instagram</span>
             </div>
+            <span className="btn-cta-label-mobile">Follow Our Instagram</span>
           </button>
         </div>
       </footer>

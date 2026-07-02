@@ -4,6 +4,7 @@ import { SHOW_PROMO_BANNER } from "./config/site";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import StickyGetLume from "./components/StickyGetLume";
 import LoadingScreen from "./components/LoadingScreen";
 import Home from "./pages/Home";
 import Mission from "./pages/Mission";
@@ -296,6 +297,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <StickyGetLume />
         </div>
       </Router>
     </ErrorBoundary>

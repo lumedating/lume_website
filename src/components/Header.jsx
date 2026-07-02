@@ -130,7 +130,7 @@ function Header() {
             Team
           </Link>
           <button
-            className="btn-get-lume"
+            className="btn-get-lume nav-get-lume-desktop"
             onClick={() => {
               handleNavClick();
               window.open(

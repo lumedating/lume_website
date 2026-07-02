@@ -130,7 +130,7 @@ function Team() {
         <h2 className="footer-text">Want to join the team?</h2>
         <div className="footer-buttons">
           <button
-            className="btn-app-store-footer"
+            className="btn-app-store-footer btn-cta"
             onClick={() =>
               window.open(
                 "https://forms.gle/F46kFj68XVCyRh2N8",
@@ -142,13 +142,14 @@ function Team() {
             {fontAwesomeLoaded && (
               <i className="fa-solid fa-sack-dollar money-bag-icon"></i>
             )}
-            <div className="btn-text-wrapper">
+            <div className="btn-text-wrapper btn-cta-label-desktop">
               <span className="btn-text-small">Apply for the</span>
               <span className="btn-text-large">Growth Team</span>
             </div>
+            <span className="btn-cta-label-mobile">Join the Team</span>
           </button>
           <button
-            className="btn-instagram"
+            className="btn-instagram btn-cta"
             onClick={() =>
               window.open(
                 "https://www.instagram.com/lumedating/",
@@ -160,10 +161,11 @@ function Team() {
             {fontAwesomeLoaded && (
               <i className="fa-brands fa-instagram instagram-logo"></i>
             )}
-            <div className="btn-text-wrapper">
+            <div className="btn-text-wrapper btn-cta-label-desktop">
               <span className="btn-text-small">DM us on</span>
               <span className="btn-text-large">Instagram</span>
             </div>
+            <span className="btn-cta-label-mobile">Follow Our Instagram</span>
           </button>
         </div>
       </footer>
