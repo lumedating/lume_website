@@ -263,7 +263,8 @@
 }
 
 .mission-title {
-  font-family: "Bowlby One", sans-serif;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
   font-size: 3.5rem;
   line-height: 1.1;
   color: #ffffff;
@@ -372,9 +373,9 @@
 }
 
 .team-card-name {
-  font-family: "Bowlby One", sans-serif;
+  font-family: "Unbounded", sans-serif;
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 800;
   color: #ffffff;
   margin: 0;
   margin-top: 0.5rem;
@@ -511,7 +512,8 @@
 }
 
 .hero-title {
-  font-family: "Bowlby One", sans-serif;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
   font-size: 3.5rem;
   line-height: 1.1;
   color: #ffffff;
@@ -633,7 +635,8 @@
 }
 
 .step-number {
-  font-family: "Bowlby One", sans-serif;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
   font-size: 14rem;
   color: #4a4a4a;
   line-height: 1;
@@ -736,7 +739,8 @@
 }
 
 .game-title {
-  font-family: "Bowlby One", sans-serif;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
   font-size: 3.5rem;
   color: #000000;
   line-height: 1.1;
@@ -840,7 +844,8 @@
 .footer-text {
   position: relative;
   z-index: 1;
-  font-family: "Bowlby One", sans-serif;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 800;
   font-size: 3.5rem;
   color: #ffffff;
   text-align: center;

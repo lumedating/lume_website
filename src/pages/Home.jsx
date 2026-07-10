@@ -166,16 +166,11 @@ function Home() {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title animate-on-scroll">
-              The Dating
-              <br />
-              Game for
-              <br />
-              UT Austin
+              Fall in love the fun way!
             </h1>
             <p className="hero-description animate-on-scroll">
-              Every day, Lume drops a new match. Play a quick Kahoot-like trivia
-              game about their profile. If you both win, we'll set up a real
-              date!
+              Join Lume, the daily game where you play to win real dates! Play
+              daily trivia about your match to win a casual date with them.
             </p>
             <button
               className="btn-app-store hero-app-store-btn"
