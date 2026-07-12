@@ -6,7 +6,7 @@ import {
   useLocation,
   Link,
 } from "react-router-dom";
-import { SHOW_PROMO_BANNER } from "./config/site";
+import { SHOW_PROMO_BANNER, PRIVACY_POLICY_URL } from "./config/site";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,7 +14,6 @@ import LoadingScreen from "./components/LoadingScreen";
 import Home from "./pages/Home";
 import Mission from "./pages/Mission";
 import Team from "./pages/Team";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -219,6 +218,14 @@ class ErrorBoundary extends Component {
   }
 }
 
+function PrivacyPolicyRedirect() {
+  useEffect(() => {
+    window.location.replace(PRIVACY_POLICY_URL);
+  }, []);
+
+  return null;
+}
+
 function ScrollToHash() {
   const location = useLocation();
 
@@ -318,7 +325,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/mission" element={<Mission />} />
               <Route path="/team" element={<Team />} />
-              <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+              <Route path="/PrivacyPolicy" element={<PrivacyPolicyRedirect />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/Lume Logo (Updated).png";
-import { APP_STORE_URL, INSTAGRAM_URL } from "../config/site";
+import { APP_STORE_URL, INSTAGRAM_URL, PRIVACY_POLICY_URL } from "../config/site";
 import { useFontAwesome } from "../hooks/useFontAwesome";
 import "../App.css";
 
@@ -70,11 +70,16 @@ function Footer() {
                 Follow us on Instagram
               </FooterLinkContent>
             </a>
-            <Link to="/PrivacyPolicy" className="site-footer-link">
+            <a
+              href={PRIVACY_POLICY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="site-footer-link"
+            >
               <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
                 Privacy policy
               </FooterLinkContent>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
