@@ -5,7 +5,9 @@
 }
 
 :root {
+  --font-scale: 0.9;
   font-family: 'DM Sans', sans-serif;
+  font-size: calc(100% * var(--font-scale));
   line-height: 1.5;
   font-weight: 400;
   color: #ffffff;

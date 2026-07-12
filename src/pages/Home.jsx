@@ -1,11 +1,30 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import heroScreenshots from "../assets/images/Lume Website Hero Screenshots.png";
-import homeScreenshot from "../assets/images/Home Screenshot.png";
-import gameScreenshot from "../assets/images/Game Screenshot.png";
-import dateDetailsScreenshot from "../assets/images/Date Details Screenshot.png";
+import heroScreenshot from "../assets/images/Hero Screenshot.png";
+import heroPictures from "../assets/images/Hero Pictures.png";
+import underline from "../assets/images/Underline.png";
+import step1Image from "../assets/images/Step 1 Image.png";
+import step2Image from "../assets/images/Step 2 Image.png";
+import step3Image from "../assets/images/Step 3 Image.png";
+import graduationHat from "../assets/images/Graduation Hat.png";
+import limegreenImage from "../assets/images/Limegreen Image.png";
+import coffeeCups from "../assets/images/Coffee Cups Image.png";
+import lovePhoto1 from "../assets/images/Love Photo 1.jpg";
+import lovePhoto2 from "../assets/images/Love Photo 2.jpg";
+import lovePhoto3 from "../assets/images/Love Photo 3.jpg";
 import { useFontAwesome } from "../hooks/useFontAwesome";
-import FooterConfetti from "../components/FooterConfetti";
-import "../App.css";
+import { APP_STORE_URL } from "../config/site";
+import "./Home.css";
+
+const LOVE_PHOTOS = [lovePhoto1, lovePhoto2, lovePhoto3];
+
+const COLLEGE_GALLERY_PHOTOS = [
+  ...LOVE_PHOTOS,
+  ...LOVE_PHOTOS,
+  ...LOVE_PHOTOS,
+  ...LOVE_PHOTOS,
+];
+
+const POLAROID_TILTS = ["-5deg", "4deg", "-3deg"];
 
 const FAQ_ITEMS = [
   {
@@ -14,7 +33,7 @@ const FAQ_ITEMS = [
       "Lume uses AI to analyze your profile, including your interests, hobbies, ambitions, and more, and compares it with other users to find your most compatible match. You get one curated match dropped each day at a random time.",
   },
   {
-    question: "how do you verify users to make sure they go to UT?",
+    question: "how do you verify that all users go to UT?",
     answer:
       "Every new user must sign up with a verified @utexas.edu email before creating an account. That way, only real UT Austin students are on Lume.",
   },
@@ -24,9 +43,57 @@ const FAQ_ITEMS = [
       "If you lose the game, you won't get to go on a date with that day's match. You'll get a fresh chance to play again tomorrow with an equally great match.",
   },
   {
-    question: "what happens after I win the game?",
+    question: "what happens when i win the game?",
     answer:
       "If you and your match both win and say yes to a date, Lume plans it for you based on both of your availability. We'll provide the date, time, and location, and all you have to do is show up.",
+  },
+  {
+    question: "what if i can't make the date after i confirmed?",
+    answer:
+      "Life happens! If something comes up after you've confirmed, let your match know through the app as soon as you can. We ask that you only confirm when you're serious about showing up — ghosting isn't cool.",
+  },
+];
+
+const HOW_IT_WORKS_STEPS = [
+  {
+    number: "1",
+    title: "Get your drop",
+    description: "We drop you a curated match at a random time every few days.",
+    image: step1Image,
+    alt: "Student with dating profile tag",
+  },
+  {
+    number: "2",
+    title: "Play the game",
+    description: "Play a quick, Kahoot-style game about your match.",
+    image: step2Image,
+    alt: "Person at game show podiums",
+  },
+  {
+    number: "3",
+    title: "Enjoy your date",
+    description:
+      "Win the game, win the date! We'll schedule & plan everything 😉",
+    image: step3Image,
+    alt: "Couple on a date",
+  },
+];
+
+const FEATURES = [
+  {
+    title: "Only verified college students",
+    image: graduationHat,
+    alt: "Graduation cap",
+  },
+  {
+    title: "Safe campus date locations",
+    image: limegreenImage,
+    alt: "Limegreen campus cafe",
+  },
+  {
+    title: "No small talk, only real dates",
+    image: coffeeCups,
+    alt: "Coffee cups",
   },
 ];
 
@@ -55,25 +122,25 @@ function FaqItem({ item, isOpen, onToggle, fontAwesomeLoaded }) {
   }, [isOpen, item.answer]);
 
   return (
-    <div className={`faq-item${isOpen ? " faq-item-open" : ""}`}>
+    <div className={`home-faq-item${isOpen ? " home-faq-item-open" : ""}`}>
       <button
         type="button"
-        className="faq-question"
+        className="home-faq-question"
         onClick={onToggle}
         aria-expanded={isOpen}
       >
         <span>{item.question}</span>
         {fontAwesomeLoaded && (
-          <i className="fa-solid fa-chevron-down faq-chevron"></i>
+          <i className="fa-solid fa-chevron-down home-faq-chevron" />
         )}
       </button>
       <div
-        className="faq-answer-wrapper"
+        className="home-faq-answer-wrapper"
         style={{ height: `${height}px` }}
         aria-hidden={!isOpen}
       >
-        <div ref={contentRef} className="faq-answer-inner">
-          <p className="faq-answer">{item.answer}</p>
+        <div ref={contentRef} className="home-faq-answer-inner">
+          <p className="home-faq-answer">{item.answer}</p>
         </div>
       </div>
     </div>
@@ -83,43 +150,37 @@ function FaqItem({ item, isOpen, onToggle, fontAwesomeLoaded }) {
 function Home() {
   const fontAwesomeLoaded = useFontAwesome();
   const observerRef = useRef(null);
-  const footerRef = useRef(null);
-  const hasConfettiFiredRef = useRef(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
-  const [showFooterConfetti, setShowFooterConfetti] = useState(false);
 
   useEffect(() => {
-    // Wait for DOM to be ready and elements to exist before querying
     let retryCount = 0;
-    const maxRetries = 10; // Maximum 1 second of retries (10 * 100ms)
+    const maxRetries = 10;
     let timeoutId = null;
 
     const setupObserver = () => {
-      // Use requestAnimationFrame to ensure DOM is fully rendered
       requestAnimationFrame(() => {
-        const elements = document.querySelectorAll(".animate-on-scroll");
+        const elements = document.querySelectorAll(".home-animate-on-scroll");
 
-        // If no elements found, try again after a short delay (with retry limit)
         if (elements.length === 0 && retryCount < maxRetries) {
           retryCount++;
           timeoutId = setTimeout(setupObserver, 100);
           return;
         }
 
-        // Only set up observer if elements exist
         if (elements.length > 0) {
-          const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -100px 0px",
-          };
-
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("animated");
-              }
-            });
-          }, observerOptions);
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("home-animated");
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: "0px 0px -80px 0px",
+            },
+          );
 
           elements.forEach((el) => observer.observe(el));
           observerRef.current = observer;
@@ -130,9 +191,7 @@ function Home() {
     setupObserver();
 
     return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
+      if (timeoutId) clearTimeout(timeoutId);
       if (observerRef.current) {
         observerRef.current.disconnect();
         observerRef.current = null;
@@ -140,106 +199,138 @@ function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    const footer = footerRef.current;
-    if (!footer) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasConfettiFiredRef.current) {
-          hasConfettiFiredRef.current = true;
-          setShowFooterConfetti(true);
-        }
-      },
-      { threshold: 0.4 },
-    );
-
-    observer.observe(footer);
-
-    return () => observer.disconnect();
-  }, []);
+  const openAppStore = () => {
+    window.open(APP_STORE_URL, "_blank", "noopener,noreferrer");
+  };
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          <div className="hero-text">
-            <h1 className="hero-title animate-on-scroll">
-              Fall in love the fun way!
+    <div className="home">
+      <section className="home-hero">
+        <div className="home-hero-content">
+          <div className="home-hero-text">
+            <h1 className="home-hero-title home-animate-on-scroll">
+              Fall in love
+              <br />
+              the{" "}
+              <span className="home-hero-highlight">
+                fun
+                <img
+                  src={underline}
+                  alt=""
+                  className="home-hero-underline"
+                  aria-hidden="true"
+                />
+              </span>{" "}
+              way!
             </h1>
-            <p className="hero-description animate-on-scroll">
+            <p className="home-hero-description home-animate-on-scroll">
               Join Lume, the daily game where you play to win real dates! Play
               daily trivia about your match to win a casual date with them.
             </p>
             <button
-              className="btn-app-store hero-app-store-btn"
-              onClick={() =>
-                window.open(
-                  "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
-                  "_blank",
-                  "noopener,noreferrer",
-                )
-              }
+              type="button"
+              className="btn-get-lume home-animate-on-scroll"
+              onClick={openAppStore}
             >
               {fontAwesomeLoaded && (
-                <i className="fa-brands fa-apple apple-logo"></i>
+                <i className="fa-brands fa-apple apple-logo" />
               )}
-              <div className="btn-text-wrapper">
-                <span className="btn-text-small">Download on the</span>
-                <span className="btn-text-large">App Store</span>
-              </div>
+              Get Lume
             </button>
           </div>
-          <div className="hero-phones">
+          <div className="home-hero-visual home-animate-on-scroll">
             <img
-              src={heroScreenshots}
-              alt="Lume app screenshots"
-              className="hero-screenshots"
+              src={heroPictures}
+              alt=""
+              className="home-hero-pictures"
+              aria-hidden="true"
+            />
+            <img
+              src={heroScreenshot}
+              alt="Lume app on a phone"
+              className="home-hero-screenshot"
             />
           </div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="how-it-works" id="how-it-works">
-        <div className="how-it-works-content">
-          <div className="step-panel">
-            <p className="step-text animate-on-scroll">
-              We drop you a curated match at a random time every day.
-            </p>
-            <img
-              src={homeScreenshot}
-              alt="Lume home screen"
-              className="step-screenshot"
-            />
-          </div>
-          <div className="step-panel">
-            <p className="step-text animate-on-scroll">
-              Play a quick, Kahoot-style game about your match.
-            </p>
-            <img
-              src={gameScreenshot}
-              alt="Game screenshot"
-              className="step-screenshot"
-            />
-          </div>
-          <div className="step-panel">
-            <p className="step-text animate-on-scroll">
-              Win the game, win the date! We’ll plan everything 😉
-            </p>
-            <img
-              src={dateDetailsScreenshot}
-              alt="Date details screenshot"
-              className="step-screenshot"
-            />
+      <section className="home-how-it-works" id="how-it-works">
+        <h2 className="home-section-title home-animate-on-scroll">
+          How it works
+        </h2>
+        <div className="home-steps">
+          {HOW_IT_WORKS_STEPS.map((step) => (
+            <div key={step.number} className="home-step home-animate-on-scroll">
+              <span className="home-step-number" aria-hidden="true">
+                {step.number}
+              </span>
+              <h3 className="home-step-title">{step.title}</h3>
+              <p className="home-step-description">{step.description}</p>
+              <img
+                src={step.image}
+                alt={step.alt}
+                className="home-step-image"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-college">
+        <div className="home-college-content">
+          <h2 className="home-section-title home-animate-on-scroll">
+            College is better with someone to share it with
+          </h2>
+          <p className="home-college-subtitle home-animate-on-scroll">
+            Find that someone you&apos;ve been looking for.
+          </p>
+        </div>
+        <div className="home-college-gallery" aria-hidden="true">
+          <div className="home-college-gallery-track">
+            {[0, 1].map((groupIndex) => (
+              <div
+                key={groupIndex}
+                className="home-college-gallery-group"
+                aria-hidden={groupIndex === 1}
+              >
+                {COLLEGE_GALLERY_PHOTOS.map((photo, index) => (
+                  <div
+                    key={`${groupIndex}-${index}`}
+                    className="home-college-polaroid"
+                    style={{
+                      transform: `rotate(${POLAROID_TILTS[index % POLAROID_TILTS.length]})`,
+                    }}
+                  >
+                    <img src={photo} alt="" />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="faq-section">
-        <div className="faq-container">
+      <section className="home-features">
+        <div className="home-features-grid">
+          {FEATURES.map((feature) => (
+            <div
+              key={feature.title}
+              className="home-feature home-animate-on-scroll"
+            >
+              <p className="home-feature-title">{feature.title}</p>
+              <img
+                src={feature.image}
+                alt={feature.alt}
+                className="home-feature-image"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-faq">
+        <h2 className="home-section-title home-animate-on-scroll">FAQs</h2>
+        <div className="home-faq-card home-animate-on-scroll">
           {FAQ_ITEMS.map((item, index) => (
             <FaqItem
               key={item.question}
@@ -254,54 +345,31 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer" ref={footerRef}>
-        {showFooterConfetti && (
-          <FooterConfetti onComplete={() => setShowFooterConfetti(false)} />
-        )}
-        <h2 className="footer-text">Click these if you're cool</h2>
-        <div className="footer-buttons">
+      <section className="home-prefooter">
+        <img
+          src={lovePhoto1}
+          alt=""
+          className="home-prefooter-bg"
+          aria-hidden="true"
+        />
+        <div className="home-prefooter-overlay" />
+        <div className="home-prefooter-content">
+          <h2 className="home-prefooter-title home-animate-on-scroll">
+            Don&apos;t miss the next drop...
+          </h2>
           <button
-            className="btn-app-store-footer btn-cta"
-            onClick={() =>
-              window.open(
-                "https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265",
-                "_blank",
-                "noopener,noreferrer",
-              )
-            }
+            type="button"
+            className="btn-get-lume home-animate-on-scroll"
+            onClick={openAppStore}
           >
             {fontAwesomeLoaded && (
-              <i className="fa-brands fa-apple apple-logo"></i>
+              <i className="fa-brands fa-apple apple-logo" />
             )}
-            <div className="btn-text-wrapper btn-cta-label-desktop">
-              <span className="btn-text-small">Download on the</span>
-              <span className="btn-text-large">App Store</span>
-            </div>
-            <span className="btn-cta-label-mobile">Get Lume</span>
-          </button>
-          <button
-            className="btn-instagram btn-cta"
-            onClick={() =>
-              window.open(
-                "https://www.instagram.com/lumedating/",
-                "_blank",
-                "noopener,noreferrer",
-              )
-            }
-          >
-            {fontAwesomeLoaded && (
-              <i className="fa-brands fa-instagram instagram-logo"></i>
-            )}
-            <div className="btn-text-wrapper btn-cta-label-desktop">
-              <span className="btn-text-small">Follow us on</span>
-              <span className="btn-text-large">Instagram</span>
-            </div>
-            <span className="btn-cta-label-mobile">Follow Our Instagram</span>
+            Get Lume
           </button>
         </div>
-      </footer>
-    </>
+      </section>
+    </div>
   );
 }
 

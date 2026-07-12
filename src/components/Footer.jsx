@@ -1,30 +1,75 @@
+import { Link } from "react-router-dom";
+import logo from "../assets/images/Lume Logo (Updated).png";
+import { APP_STORE_URL, INSTAGRAM_URL } from "../config/site";
+import { useFontAwesome } from "../hooks/useFontAwesome";
 import "../App.css";
 
+function FooterLinkContent({ children, fontAwesomeLoaded }) {
+  return (
+    <>
+      {children}
+      {fontAwesomeLoaded && (
+        <i
+          className="fa-solid fa-arrow-right site-footer-link-icon"
+          aria-hidden="true"
+        />
+      )}
+    </>
+  );
+}
+
 function Footer() {
+  const fontAwesomeLoaded = useFontAwesome();
+
   return (
     <footer className="site-footer">
       <div className="site-footer-content">
-        <p className="site-footer-text">© 2024 Lume. All rights reserved.</p>
-        <div className="site-footer-links">
-          <a
-            href="https://apps.apple.com/us/app/lume-the-mobile-dating-game/id6752439265"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-footer-link"
-          >
-            App Store
-          </a>
-          <a
-            href="https://www.instagram.com/lumedating/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-footer-link"
-          >
-            Instagram
-          </a>
-          <a href="/PrivacyPolicy" className="site-footer-link">
-            Privacy Policy
-          </a>
+        <div className="site-footer-brand">
+          <div className="site-footer-logo">
+            <img src={logo} alt="Lume" className="logo-icon" />
+          </div>
+          <p className="site-footer-text">© 2024 Lume. All rights reserved.</p>
+        </div>
+        <div className="site-footer-columns">
+          <div className="site-footer-column">
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="site-footer-link"
+            >
+              <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
+                Download on iOS
+              </FooterLinkContent>
+            </a>
+            <Link to="/team" className="site-footer-link">
+              <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
+                Join the team
+              </FooterLinkContent>
+            </Link>
+            <Link to="/mission" className="site-footer-link">
+              <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
+                Our mission
+              </FooterLinkContent>
+            </Link>
+          </div>
+          <div className="site-footer-column">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="site-footer-link"
+            >
+              <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
+                Follow us on Instagram
+              </FooterLinkContent>
+            </a>
+            <Link to="/PrivacyPolicy" className="site-footer-link">
+              <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
+                Privacy policy
+              </FooterLinkContent>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

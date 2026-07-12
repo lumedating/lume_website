@@ -1,10 +1,15 @@
 import { Component, useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Link,
+} from "react-router-dom";
 import { SHOW_PROMO_BANNER } from "./config/site";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import StickyGetLume from "./components/StickyGetLume";
 import LoadingScreen from "./components/LoadingScreen";
 import Home from "./pages/Home";
 import Mission from "./pages/Mission";
@@ -14,11 +19,11 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      hasError: false, 
-      error: null, 
+    this.state = {
+      hasError: false,
+      error: null,
       errorInfo: null,
-      showError: false // Separate state for showing error UI
+      showError: false, // Separate state for showing error UI
     };
     this.retryTimeout = null;
     this.showErrorTimeout = null;
@@ -33,7 +38,7 @@ class ErrorBoundary extends Component {
   componentDidCatch(error, errorInfo) {
     // Log error for debugging
     console.error("Error caught by boundary:", error, errorInfo);
-    
+
     // Store error info
     this.setState({
       error,
@@ -42,7 +47,7 @@ class ErrorBoundary extends Component {
 
     // Filter out non-critical errors that shouldn't show error UI
     const isNonCriticalError = this.isNonCriticalError(error, errorInfo);
-    
+
     if (isNonCriticalError) {
       // For non-critical errors, just log and don't show UI
       console.warn("Non-critical error caught, not showing error UI:", error);
@@ -98,32 +103,34 @@ class ErrorBoundary extends Component {
 
   isNonCriticalError(error, errorInfo) {
     // Check if error is related to image loading or other non-critical issues
-    const errorMessage = error?.message?.toLowerCase() || '';
-    const errorStack = errorInfo?.componentStack?.toLowerCase() || '';
-    
+    const errorMessage = error?.message?.toLowerCase() || "";
+    const errorStack = errorInfo?.componentStack?.toLowerCase() || "";
+
     // Image loading errors are handled by browsers and shouldn't crash the app
-    if (errorMessage.includes('image') || errorMessage.includes('img')) {
+    if (errorMessage.includes("image") || errorMessage.includes("img")) {
       return true;
     }
-    
+
     // Font loading errors are non-critical
-    if (errorMessage.includes('font') || errorMessage.includes('fontawesome')) {
+    if (errorMessage.includes("font") || errorMessage.includes("fontawesome")) {
       return true;
     }
-    
+
     // Network errors for non-critical resources
-    if (errorMessage.includes('failed to fetch') || 
-        errorMessage.includes('network') ||
-        errorMessage.includes('loading chunk')) {
+    if (
+      errorMessage.includes("failed to fetch") ||
+      errorMessage.includes("network") ||
+      errorMessage.includes("loading chunk")
+    ) {
       // Only consider it non-critical if it's not a critical resource
       return true;
     }
-    
+
     // Chunk loading errors (common on first load) are often transient
-    if (errorMessage.includes('chunk') || errorMessage.includes('loading')) {
+    if (errorMessage.includes("chunk") || errorMessage.includes("loading")) {
       return true;
     }
-    
+
     return false;
   }
 
@@ -147,10 +154,10 @@ class ErrorBoundary extends Component {
       clearTimeout(this.showErrorTimeout);
       this.showErrorTimeout = null;
     }
-    
+
     // Reset retry count
     this.retryCountRef.current = 0;
-    
+
     this.setState({
       hasError: false,
       showError: false,
@@ -166,7 +173,15 @@ class ErrorBoundary extends Component {
         <div className="app" style={{ padding: "2rem", textAlign: "center" }}>
           <h1>Something went wrong.</h1>
           <p>Please refresh the page.</p>
-          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "1rem", flexWrap: "wrap" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              justifyContent: "center",
+              marginTop: "1rem",
+              flexWrap: "wrap",
+            }}
+          >
             <button
               onClick={this.handleReset}
               style={{
@@ -227,10 +242,22 @@ function ScrollToHash() {
 
 function NotFound() {
   return (
-    <div style={{ padding: "2rem", textAlign: "center", minHeight: "60vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <div
+      style={{
+        padding: "2rem",
+        textAlign: "center",
+        minHeight: "60vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
       <h1>404 - Page Not Found</h1>
       <p>The page you're looking for doesn't exist.</p>
-      <Link to="/" style={{ color: "#b700ff", textDecoration: "none", marginTop: "1rem" }}>
+      <Link
+        to="/"
+        style={{ color: "#b700ff", textDecoration: "none", marginTop: "1rem" }}
+      >
         Go Home
       </Link>
     </div>
@@ -285,22 +312,21 @@ function App() {
         <LoadingScreen exiting={loaderPhase === "exiting"} />
       )}
       <ErrorBoundary>
-      <Router>
-        <div className={`app${SHOW_PROMO_BANNER ? " has-promo-banner" : ""}`}>
-          <ScrollToHash />
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/mission" element={<Mission />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-          <StickyGetLume />
-        </div>
-      </Router>
-    </ErrorBoundary>
+        <Router>
+          <div className={`app${SHOW_PROMO_BANNER ? " has-promo-banner" : ""}`}>
+            <ScrollToHash />
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/mission" element={<Mission />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </ErrorBoundary>
     </>
   );
 }
