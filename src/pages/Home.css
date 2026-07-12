@@ -36,23 +36,22 @@
   line-height: 1.15;
 }
 
-/* Dot texture on primary-colored sections */
-.home-hero,
-.home-how-it-works,
-.home-faq {
+/* Shared primary band (hero + how it works) */
+.home-primary {
   position: relative;
   isolation: isolate;
+  background: linear-gradient(180deg, #8800be 0%, #c739ff 100%);
+  background-attachment: fixed;
 }
 
-.home-hero::before,
-.home-how-it-works::before,
+.home-primary::before,
 .home-faq::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   background-image: url("../assets/Dot Background.png");
-  background-position: center;
+  background-position: center top;
   background-size: cover;
   background-attachment: fixed;
   mix-blend-mode: screen;
@@ -60,11 +59,21 @@
   pointer-events: none;
 }
 
-/* Primary gradient (hero + how it works) */
+.home-hero,
+.home-how-it-works,
+.home-faq {
+  position: relative;
+  isolation: isolate;
+}
+
 .home-hero,
 .home-how-it-works {
-  background: linear-gradient(180deg, #8800be 0%, #c739ff 100%);
-  background-attachment: fixed;
+  background: transparent;
+  z-index: 1;
+}
+
+.home-faq::before {
+  z-index: -1;
 }
 
 /* Hero */
@@ -575,17 +584,20 @@
   line-height: 1.15;
 }
 
-/* iOS/touch browsers mishandle fixed backgrounds and zoom the dot texture */
+/* iOS/touch: avoid fixed backgrounds; size dots to the viewport so they
+   match across sections (fixed + cover sizes against the viewport) */
 @media (hover: none) and (pointer: coarse) {
-  .home-hero,
-  .home-how-it-works {
+  .home-primary {
     background-attachment: scroll;
   }
 
-  .home-hero::before,
-  .home-how-it-works::before,
+  .home-primary::before,
   .home-faq::before {
     background-attachment: scroll;
+    /* Emulate cover of the viewport (1608×1089 asset) */
+    background-size: max(100vw, calc(100dvh * 1608 / 1089)) auto;
+    background-repeat: repeat-y;
+    background-position: center top;
   }
 }
 

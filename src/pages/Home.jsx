@@ -499,83 +499,88 @@ function Home() {
 
   return (
     <div className="home">
-      <section className="home-hero" ref={heroRef}>
-        <div className="home-hero-content">
-          <div className="home-hero-text">
-            <h1 className="home-hero-title home-animate-on-scroll">
-              Fall in love
-              <br />
-              the{" "}
-              <span className="home-hero-highlight">
-                fun
-                <img
-                  src={underline}
-                  alt=""
-                  className="home-hero-underline"
-                  aria-hidden="true"
-                />
-              </span>{" "}
-              way!
-            </h1>
-            <p className="home-hero-description home-animate-on-scroll">
-              Join Lume, the daily game where you play to win real dates! Play
-              daily trivia about your match to win a casual date with them.
-            </p>
-            <button
-              type="button"
-              className="btn-get-lume home-animate-on-scroll"
-              onClick={openAppStore}
+      <div className="home-primary">
+        <section className="home-hero" ref={heroRef}>
+          <div className="home-hero-content">
+            <div className="home-hero-text">
+              <h1 className="home-hero-title home-animate-on-scroll">
+                Fall in love
+                <br />
+                the{" "}
+                <span className="home-hero-highlight">
+                  fun
+                  <img
+                    src={underline}
+                    alt=""
+                    className="home-hero-underline"
+                    aria-hidden="true"
+                  />
+                </span>{" "}
+                way!
+              </h1>
+              <p className="home-hero-description home-animate-on-scroll">
+                Join Lume, the daily game where you play to win real dates! Play
+                daily trivia about your match to win a casual date with them.
+              </p>
+              <button
+                type="button"
+                className="btn-get-lume home-animate-on-scroll"
+                onClick={openAppStore}
+              >
+                {fontAwesomeLoaded && (
+                  <i className="fa-brands fa-apple apple-logo" />
+                )}
+                Get Lume
+              </button>
+            </div>
+            <div
+              className="home-hero-visual home-animate-on-scroll"
+              ref={heroVisualRef}
             >
-              {fontAwesomeLoaded && (
-                <i className="fa-brands fa-apple apple-logo" />
-              )}
-              Get Lume
-            </button>
-          </div>
-          <div
-            className="home-hero-visual home-animate-on-scroll"
-            ref={heroVisualRef}
-          >
-            <img
-              src={heroPictures}
-              alt=""
-              className="home-hero-pictures"
-              aria-hidden="true"
-            />
-            <img
-              src={heroScreenshot}
-              alt="Lume app on a phone"
-              className="home-hero-screenshot"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="home-how-it-works"
-        id="how-it-works"
-        ref={howItWorksRef}
-      >
-        <h2 className="home-section-title home-animate-on-scroll">
-          How it works
-        </h2>
-        <div className="home-steps">
-          {HOW_IT_WORKS_STEPS.map((step) => (
-            <div key={step.number} className="home-step home-animate-on-scroll">
-              <span className="home-step-number" aria-hidden="true">
-                {step.number}
-              </span>
-              <h3 className="home-step-title">{step.title}</h3>
-              <p className="home-step-description">{step.description}</p>
               <img
-                src={step.image}
-                alt={step.alt}
-                className="home-step-image"
+                src={heroPictures}
+                alt=""
+                className="home-hero-pictures"
+                aria-hidden="true"
+              />
+              <img
+                src={heroScreenshot}
+                alt="Lume app on a phone"
+                className="home-hero-screenshot"
               />
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
+
+        <section
+          className="home-how-it-works"
+          id="how-it-works"
+          ref={howItWorksRef}
+        >
+          <h2 className="home-section-title home-animate-on-scroll">
+            How it works
+          </h2>
+          <div className="home-steps">
+            {HOW_IT_WORKS_STEPS.map((step) => (
+              <div
+                key={step.number}
+                className="home-step home-animate-on-scroll"
+              >
+                <span className="home-step-number" aria-hidden="true">
+                  {step.number}
+                </span>
+                <h3 className="home-step-title">{step.title}</h3>
+                <p className="home-step-description">{step.description}</p>
+                <img
+                  src={step.image}
+                  alt={step.alt}
+                  className="home-step-image"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
 
       <section className="home-college">
         <div className="home-college-content">
