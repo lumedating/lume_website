@@ -1122,6 +1122,17 @@
 }
 
 @media (max-width: 768px) {
+  .app {
+    --header-nav-height: 96px;
+    overflow-x: clip;
+  }
+
+  .site-header {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   .header,
   .hero,
   .mission-hero,
@@ -1143,7 +1154,11 @@
   }
 
   .header {
-    padding: 0.625rem 1.5rem 0;
+    padding: 0.625rem 1.5rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .logo-icon {

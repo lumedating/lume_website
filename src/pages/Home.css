@@ -513,7 +513,21 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-bottom: var(--section-slant);
   --prefooter-bg-parallax: 0px;
+}
+
+.home-prefooter::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--section-slant);
+  z-index: 2;
+  pointer-events: none;
+  background-color: var(--lume-black, #000000);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
 }
 
 .home-prefooter-bg {
@@ -613,11 +627,20 @@
 
 @media (max-width: 768px) {
   .home-hero {
-    padding: calc(var(--site-header-offset) + 1.5rem) 1.5rem 1.5rem;
+    padding: calc(var(--site-header-offset) + 2.25rem) 0 5rem;
+    overflow-x: clip;
+  }
+
+  .home-hero-text {
+    padding: 0 1.5rem;
   }
 
   .home-how-it-works {
-    padding: 4rem 1.5rem calc(4rem + var(--section-slant));
+    padding: 5.5rem 1.5rem calc(4rem + var(--section-slant));
+  }
+
+  .home-how-it-works::after {
+    transform: translateY(2px);
   }
 
   .home-college {
@@ -641,6 +664,14 @@
     padding: 4rem 1.5rem calc(5rem + var(--section-slant));
   }
 
+  .home-features-grid {
+    gap: 3.5rem;
+  }
+
+  .home-feature-title {
+    max-width: 14rem;
+  }
+
   .home-faq {
     padding: calc(5rem + var(--section-slant)) 1.5rem 5rem;
   }
@@ -650,15 +681,27 @@
   }
 
   .home-hero-visual {
-    min-height: 300px;
+    min-height: 320px;
+    margin-bottom: 2.5rem;
+    overflow-x: clip;
+  }
+
+  .home-hero-pictures {
+    width: 122%;
+    max-width: none;
   }
 
   .home-hero-screenshot {
-    width: 62%;
-    max-width: 300px;
+    width: 68%;
+    max-width: none;
   }
 
   .home-prefooter {
     min-height: 320px;
+  }
+
+  .home-prefooter::after {
+    clip-path: polygon(0 100%, 0 0, 100% 100%);
+    transform: translateY(2px);
   }
 }

@@ -106,6 +106,7 @@ const HERO_MOUSE_EASE = 0.12;
 const STEP_NUMBER_PARALLAX = 0.12;
 const STEP_CONTENT_PARALLAX = 0.06;
 const STEP_IMAGE_PARALLAX = 0.03;
+const STEP_PARALLAX_MOBILE_SCALE = 0.3;
 
 const PREFOOTER_BG_PARALLAX = 0.12;
 
@@ -235,6 +236,7 @@ function useHowItWorksParallax(sectionRef) {
     const reducedMotionQuery = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     );
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
     let rafId = null;
 
     const resetMotionVars = () => {
@@ -252,18 +254,19 @@ function useHowItWorksParallax(sectionRef) {
       const sectionRect = section.getBoundingClientRect();
       const maxScroll = section.offsetHeight;
       const scrolled = Math.min(Math.max(0, -sectionRect.top), maxScroll);
+      const scale = mobileQuery.matches ? STEP_PARALLAX_MOBILE_SCALE : 1;
 
       section.style.setProperty(
         "--step-parallax-number",
-        `${scrolled * STEP_NUMBER_PARALLAX}px`,
+        `${scrolled * STEP_NUMBER_PARALLAX * scale}px`,
       );
       section.style.setProperty(
         "--step-parallax-content",
-        `${scrolled * STEP_CONTENT_PARALLAX}px`,
+        `${scrolled * STEP_CONTENT_PARALLAX * scale}px`,
       );
       section.style.setProperty(
         "--step-parallax-image",
-        `${scrolled * STEP_IMAGE_PARALLAX}px`,
+        `${scrolled * STEP_IMAGE_PARALLAX * scale}px`,
       );
     };
 
