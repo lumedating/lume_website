@@ -22,7 +22,7 @@ function Footer() {
   const location = useLocation();
   const fontAwesomeLoaded = useFontAwesome();
 
-  const handleJoinTeamClick = () => {
+  const handleMeetTeamClick = () => {
     if (location.pathname === "/team") {
       window.scrollTo(0, 0);
     }
@@ -52,15 +52,10 @@ function Footer() {
             <Link
               to="/team"
               className="site-footer-link"
-              onClick={handleJoinTeamClick}
+              onClick={handleMeetTeamClick}
             >
               <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
-                Join the team
-              </FooterLinkContent>
-            </Link>
-            <Link to="/mission" className="site-footer-link">
-              <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
-                Our mission
+                Meet our team
               </FooterLinkContent>
             </Link>
           </div>
