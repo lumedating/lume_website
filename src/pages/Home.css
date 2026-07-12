@@ -575,6 +575,20 @@
   line-height: 1.15;
 }
 
+/* iOS/touch browsers mishandle fixed backgrounds and zoom the dot texture */
+@media (hover: none) and (pointer: coarse) {
+  .home-hero,
+  .home-how-it-works {
+    background-attachment: scroll;
+  }
+
+  .home-hero::before,
+  .home-how-it-works::before,
+  .home-faq::before {
+    background-attachment: scroll;
+  }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .home-hero {
