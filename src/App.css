@@ -298,11 +298,13 @@
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 9999px;
+  font-family: "DM Sans", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-height: calc(1.5rem + 28px);
   box-shadow: 2px 2px 0 #cccccc;
 }
 
@@ -414,99 +416,6 @@
   font-size: 1.25rem;
   line-height: 1.8;
   color: #ffffff;
-}
-
-/* Team Section */
-.team-section {
-  margin: 12px 12px;
-  margin-top: 0;
-  padding: 0px 0rem;
-  background-color: #111111;
-  border-radius: 36px;
-  display: flex;
-  justify-content: center;
-}
-
-.team-content {
-  width: 100%;
-  max-width: 1400px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-.team-card {
-  background-color: #1b1b1b;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.team-card-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-}
-
-.team-card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.team-card-image.loaded {
-  opacity: 1;
-}
-
-.team-card-skeleton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #2a2a2a 0%, #333333 50%, #2a2a2a 100%);
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-}
-
-.team-card-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0rem;
-  text-align: left;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    transparent 100%
-  );
-}
-
-.team-card-name {
-  font-family: "Unbounded", sans-serif;
-  font-size: 1.125rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0;
-  margin-top: 0.5rem;
-}
-
-.team-card-position {
-  font-family: "DM Sans", sans-serif;
-  font-size: 1rem;
-  color: #ffffff;
-  opacity: 0.75;
-  margin: 0;
 }
 
 /* Gallery Section */
@@ -1116,9 +1025,6 @@
     grid-template-columns: 1fr;
   }
 
-  .team-content {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1137,7 +1043,6 @@
   .hero,
   .mission-hero,
   .mission-section,
-  .team-section,
   .gallery-section,
   .how-it-works,
   .faq-section,
@@ -1189,14 +1094,6 @@
 
   .mission-section {
     padding: 3rem 1.5rem;
-  }
-
-  .team-section {
-    padding: 0rem 0rem;
-  }
-
-  .team-content {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .gallery-section {

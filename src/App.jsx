@@ -223,7 +223,6 @@ function ScrollToHash() {
   const location = useLocation();
 
   useEffect(() => {
-    // Only scroll if there's a hash, or if we're navigating to home page
     if (location.hash) {
       const element = document.getElementById(location.hash.substring(1));
       if (element) {
@@ -231,8 +230,7 @@ function ScrollToHash() {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }, 100);
       }
-    } else if (location.pathname === "/") {
-      // Only scroll to top on home page, not on every route change
+    } else {
       window.scrollTo(0, 0);
     }
   }, [location]);

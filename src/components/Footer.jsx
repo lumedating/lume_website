@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/Lume Logo (Updated).png";
 import { APP_STORE_URL, INSTAGRAM_URL } from "../config/site";
 import { useFontAwesome } from "../hooks/useFontAwesome";
@@ -19,7 +19,14 @@ function FooterLinkContent({ children, fontAwesomeLoaded }) {
 }
 
 function Footer() {
+  const location = useLocation();
   const fontAwesomeLoaded = useFontAwesome();
+
+  const handleJoinTeamClick = () => {
+    if (location.pathname === "/team") {
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
     <footer className="site-footer">
@@ -42,7 +49,11 @@ function Footer() {
                 Download on iOS
               </FooterLinkContent>
             </a>
-            <Link to="/team" className="site-footer-link">
+            <Link
+              to="/team"
+              className="site-footer-link"
+              onClick={handleJoinTeamClick}
+            >
               <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
                 Join the team
               </FooterLinkContent>
