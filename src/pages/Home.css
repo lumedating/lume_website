@@ -136,6 +136,10 @@
   align-items: center;
   min-height: 480px;
   padding-right: 8rem;
+  --hero-parallax-pictures: 0px;
+  --hero-parallax-screenshot: 0px;
+  --hero-mouse-x: 0px;
+  --hero-mouse-y: 0px;
 }
 
 .home-hero-pictures {
@@ -145,7 +149,12 @@
   height: auto;
   object-fit: contain;
   pointer-events: none;
-  transform: translateY(1rem);
+  transform: translate3d(
+    var(--hero-mouse-x),
+    calc(1rem + var(--hero-parallax-pictures) + var(--hero-mouse-y)),
+    0
+  );
+  will-change: transform;
 }
 
 .home-hero-screenshot {
@@ -155,7 +164,33 @@
   max-width: 430px;
   height: auto;
   object-fit: contain;
-  transform: translateY(1rem);
+  pointer-events: none;
+  transform: translate3d(0, calc(1rem + var(--hero-parallax-screenshot)), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-pictures,
+  .home-hero-screenshot {
+    transform: translateY(1rem);
+    will-change: auto;
+  }
+
+  .home-step-number {
+    transform: translateX(-50%);
+    will-change: auto;
+  }
+
+  .home-step-title,
+  .home-step-description,
+  .home-step-image {
+    transform: none;
+    will-change: auto;
+  }
+
+  .home-step:first-child .home-step-image {
+    transform: translateY(-0.75rem);
+  }
 }
 
 /* Slanted transitions between primary and black sections */
@@ -175,6 +210,9 @@
 /* How it works */
 .home-how-it-works {
   padding: 5rem 4rem calc(6rem + var(--section-slant));
+  --step-parallax-number: 0px;
+  --step-parallax-content: 0px;
+  --step-parallax-image: 0px;
 }
 
 .home-how-it-works .home-section-title {
@@ -203,7 +241,7 @@
   position: absolute;
   top: -2rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(var(--step-parallax-number));
   font-family: "Unbounded", sans-serif;
   font-weight: 800;
   font-size: clamp(5rem, 9vw, 8.5rem);
@@ -211,6 +249,7 @@
   line-height: 1;
   pointer-events: none;
   user-select: none;
+  will-change: transform;
 }
 
 .home-step-title {
@@ -221,6 +260,8 @@
   font-size: clamp(1.25rem, 1.8vw, 1.75rem);
   color: #ffffff;
   margin: 2.5rem 0 0;
+  transform: translateY(var(--step-parallax-content));
+  will-change: transform;
 }
 
 .home-step-description {
@@ -233,6 +274,8 @@
   margin: 0;
   max-width: 22rem;
   width: 100%;
+  transform: translateY(var(--step-parallax-content));
+  will-change: transform;
 }
 
 .home-step-image {
@@ -243,12 +286,14 @@
   height: auto;
   object-fit: contain;
   margin-top: 1rem;
+  transform: translateY(var(--step-parallax-image));
+  will-change: transform;
 }
 
 .home-step:first-child .home-step-image {
   max-width: 240px;
   margin-top: 0.25rem;
-  transform: translateY(-0.75rem);
+  transform: translateY(calc(-0.75rem + var(--step-parallax-image)));
 }
 
 .home-step:nth-child(2) .home-step-image {
@@ -468,16 +513,26 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  --prefooter-bg-parallax: 0px;
 }
 
 .home-prefooter-bg {
   position: absolute;
-  inset: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 125%;
+  top: 6%;
   object-fit: cover;
-  filter: blur(4px);
-  transform: scale(1.05);
+  object-position: center 40%;
+  transform: scale(1.08) translate3d(0, var(--prefooter-bg-parallax), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-prefooter-bg {
+    transform: scale(1.08);
+    will-change: auto;
+  }
 }
 
 .home-prefooter-overlay {

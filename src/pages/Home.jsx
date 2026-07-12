@@ -6,6 +6,7 @@ import step1Image from "../assets/images/Step 1 Image.png";
 import step2Image from "../assets/images/Step 2 Image.png";
 import step3Image from "../assets/images/Step 3 Image.png";
 import graduationHat from "../assets/images/Graduation Hat.png";
+import graduationKissingPhoto from "../assets/images/Graduation Kissing Photo.png";
 import limegreenImage from "../assets/images/Limegreen Image.png";
 import coffeeCups from "../assets/images/Coffee Cups Image.png";
 import lovePhoto1 from "../assets/images/Love Photo 1.jpg";
@@ -97,6 +98,288 @@ const FEATURES = [
   },
 ];
 
+const HERO_PICTURES_PARALLAX = 0.09;
+const HERO_SCREENSHOT_PARALLAX = 0.05;
+const HERO_MOUSE_MAX_PX = 7;
+const HERO_MOUSE_EASE = 0.12;
+
+const STEP_NUMBER_PARALLAX = 0.12;
+const STEP_CONTENT_PARALLAX = 0.06;
+const STEP_IMAGE_PARALLAX = 0.03;
+
+const PREFOOTER_BG_PARALLAX = 0.12;
+
+function useHeroVisualEffects(heroRef, visualRef) {
+  useEffect(() => {
+    const hero = heroRef.current;
+    const visual = visualRef.current;
+    if (!hero || !visual) return;
+
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
+
+    let mouseTargetX = 0;
+    let mouseTargetY = 0;
+    let mouseCurrentX = 0;
+    let mouseCurrentY = 0;
+    let rafId = null;
+
+    const resetMotionVars = () => {
+      visual.style.setProperty("--hero-parallax-pictures", "0px");
+      visual.style.setProperty("--hero-parallax-screenshot", "0px");
+      visual.style.setProperty("--hero-mouse-x", "0px");
+      visual.style.setProperty("--hero-mouse-y", "0px");
+    };
+
+    const updateParallax = () => {
+      if (reducedMotionQuery.matches) return;
+
+      const scrolled = Math.max(0, -hero.getBoundingClientRect().top);
+      visual.style.setProperty(
+        "--hero-parallax-pictures",
+        `${scrolled * HERO_PICTURES_PARALLAX}px`,
+      );
+      visual.style.setProperty(
+        "--hero-parallax-screenshot",
+        `${scrolled * HERO_SCREENSHOT_PARALLAX}px`,
+      );
+    };
+
+    const tick = () => {
+      updateParallax();
+
+      if (!reducedMotionQuery.matches && !coarsePointerQuery.matches) {
+        mouseCurrentX += (mouseTargetX - mouseCurrentX) * HERO_MOUSE_EASE;
+        mouseCurrentY += (mouseTargetY - mouseCurrentY) * HERO_MOUSE_EASE;
+        visual.style.setProperty("--hero-mouse-x", `${mouseCurrentX}px`);
+        visual.style.setProperty("--hero-mouse-y", `${mouseCurrentY}px`);
+      }
+
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const startLoop = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const stopLoop = () => {
+      if (rafId === null) return;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    };
+
+    const onMouseMove = (event) => {
+      if (reducedMotionQuery.matches || coarsePointerQuery.matches) return;
+
+      const rect = visual.getBoundingClientRect();
+      const offsetX = (event.clientX - rect.left) / rect.width - 0.5;
+      const offsetY = (event.clientY - rect.top) / rect.height - 0.5;
+      mouseTargetX = offsetX * HERO_MOUSE_MAX_PX * 2;
+      mouseTargetY = offsetY * HERO_MOUSE_MAX_PX * 2;
+    };
+
+    const onMouseLeave = () => {
+      mouseTargetX = 0;
+      mouseTargetY = 0;
+    };
+
+    const onMotionPreferenceChange = () => {
+      if (reducedMotionQuery.matches) {
+        mouseTargetX = 0;
+        mouseTargetY = 0;
+        mouseCurrentX = 0;
+        mouseCurrentY = 0;
+        resetMotionVars();
+        stopLoop();
+        return;
+      }
+
+      startLoop();
+    };
+
+    if (reducedMotionQuery.matches) {
+      resetMotionVars();
+    } else {
+      startLoop();
+    }
+
+    visual.addEventListener("mousemove", onMouseMove);
+    visual.addEventListener("mouseleave", onMouseLeave);
+    reducedMotionQuery.addEventListener("change", onMotionPreferenceChange);
+    coarsePointerQuery.addEventListener("change", onMotionPreferenceChange);
+
+    return () => {
+      stopLoop();
+      visual.removeEventListener("mousemove", onMouseMove);
+      visual.removeEventListener("mouseleave", onMouseLeave);
+      reducedMotionQuery.removeEventListener(
+        "change",
+        onMotionPreferenceChange,
+      );
+      coarsePointerQuery.removeEventListener(
+        "change",
+        onMotionPreferenceChange,
+      );
+    };
+  }, [heroRef, visualRef]);
+}
+
+function useHowItWorksParallax(sectionRef) {
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    let rafId = null;
+
+    const resetMotionVars = () => {
+      section.style.setProperty("--step-parallax-number", "0px");
+      section.style.setProperty("--step-parallax-content", "0px");
+      section.style.setProperty("--step-parallax-image", "0px");
+    };
+
+    const updateParallax = () => {
+      if (reducedMotionQuery.matches) {
+        resetMotionVars();
+        return;
+      }
+
+      const sectionRect = section.getBoundingClientRect();
+      const maxScroll = section.offsetHeight;
+      const scrolled = Math.min(Math.max(0, -sectionRect.top), maxScroll);
+
+      section.style.setProperty(
+        "--step-parallax-number",
+        `${scrolled * STEP_NUMBER_PARALLAX}px`,
+      );
+      section.style.setProperty(
+        "--step-parallax-content",
+        `${scrolled * STEP_CONTENT_PARALLAX}px`,
+      );
+      section.style.setProperty(
+        "--step-parallax-image",
+        `${scrolled * STEP_IMAGE_PARALLAX}px`,
+      );
+    };
+
+    const tick = () => {
+      updateParallax();
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const stopLoop = () => {
+      if (rafId === null) return;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    };
+
+    const onMotionPreferenceChange = () => {
+      if (reducedMotionQuery.matches) {
+        resetMotionVars();
+        stopLoop();
+        return;
+      }
+
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
+    if (reducedMotionQuery.matches) {
+      resetMotionVars();
+    } else {
+      rafId = requestAnimationFrame(tick);
+    }
+
+    reducedMotionQuery.addEventListener("change", onMotionPreferenceChange);
+
+    return () => {
+      stopLoop();
+      reducedMotionQuery.removeEventListener(
+        "change",
+        onMotionPreferenceChange,
+      );
+    };
+  }, [sectionRef]);
+}
+
+function usePrefooterParallax(sectionRef) {
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    let rafId = null;
+
+    const resetMotionVar = () => {
+      section.style.setProperty("--prefooter-bg-parallax", "0px");
+    };
+
+    const updateParallax = () => {
+      if (reducedMotionQuery.matches) {
+        resetMotionVar();
+        return;
+      }
+
+      const sectionRect = section.getBoundingClientRect();
+      const viewportScroll = Math.max(0, window.innerHeight - sectionRect.top);
+      const maxOffset = section.offsetHeight * 0.18;
+      const parallax = -Math.min(
+        viewportScroll * PREFOOTER_BG_PARALLAX,
+        maxOffset,
+      );
+
+      section.style.setProperty("--prefooter-bg-parallax", `${parallax}px`);
+    };
+
+    const tick = () => {
+      updateParallax();
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const stopLoop = () => {
+      if (rafId === null) return;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    };
+
+    const onMotionPreferenceChange = () => {
+      if (reducedMotionQuery.matches) {
+        resetMotionVar();
+        stopLoop();
+        return;
+      }
+
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
+    if (reducedMotionQuery.matches) {
+      resetMotionVar();
+    } else {
+      rafId = requestAnimationFrame(tick);
+    }
+
+    reducedMotionQuery.addEventListener("change", onMotionPreferenceChange);
+
+    return () => {
+      stopLoop();
+      reducedMotionQuery.removeEventListener(
+        "change",
+        onMotionPreferenceChange,
+      );
+    };
+  }, [sectionRef]);
+}
+
 function FaqItem({ item, isOpen, onToggle, fontAwesomeLoaded }) {
   const contentRef = useRef(null);
   const [height, setHeight] = useState(0);
@@ -150,7 +433,15 @@ function FaqItem({ item, isOpen, onToggle, fontAwesomeLoaded }) {
 function Home() {
   const fontAwesomeLoaded = useFontAwesome();
   const observerRef = useRef(null);
+  const heroRef = useRef(null);
+  const heroVisualRef = useRef(null);
+  const howItWorksRef = useRef(null);
+  const prefooterRef = useRef(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  useHeroVisualEffects(heroRef, heroVisualRef);
+  useHowItWorksParallax(howItWorksRef);
+  usePrefooterParallax(prefooterRef);
 
   useEffect(() => {
     let retryCount = 0;
@@ -205,7 +496,7 @@ function Home() {
 
   return (
     <div className="home">
-      <section className="home-hero">
+      <section className="home-hero" ref={heroRef}>
         <div className="home-hero-content">
           <div className="home-hero-text">
             <h1 className="home-hero-title home-animate-on-scroll">
@@ -238,7 +529,10 @@ function Home() {
               Get Lume
             </button>
           </div>
-          <div className="home-hero-visual home-animate-on-scroll">
+          <div
+            className="home-hero-visual home-animate-on-scroll"
+            ref={heroVisualRef}
+          >
             <img
               src={heroPictures}
               alt=""
@@ -254,7 +548,11 @@ function Home() {
         </div>
       </section>
 
-      <section className="home-how-it-works" id="how-it-works">
+      <section
+        className="home-how-it-works"
+        id="how-it-works"
+        ref={howItWorksRef}
+      >
         <h2 className="home-section-title home-animate-on-scroll">
           How it works
         </h2>
@@ -345,9 +643,9 @@ function Home() {
         </div>
       </section>
 
-      <section className="home-prefooter">
+      <section className="home-prefooter" ref={prefooterRef}>
         <img
-          src={lovePhoto1}
+          src={graduationKissingPhoto}
           alt=""
           className="home-prefooter-bg"
           aria-hidden="true"
