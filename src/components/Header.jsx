@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/images/Lume Logo (Updated).png";
+import logo from "../assets/images/Lume Logo (NEW).png";
 import { useFontAwesome } from "../hooks/useFontAwesome";
 import { APP_STORE_URL } from "../config/site";
 import "../App.css";

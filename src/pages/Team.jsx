@@ -9,8 +9,6 @@ import austinKeith from "../assets/images/team/Austin Keith Image.jpg";
 import marioJaar from "../assets/images/team/Mario Jaar Image.jpg";
 import claytonLaney from "../assets/images/team/Clayton Laney Image.jpeg";
 import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
-import shimalTajale from "../assets/images/team/Shimal Tajale Image.JPG";
-import sohaAlam from "../assets/images/team/Soha Alam Image.jpg";
 import luckyCantu from "../assets/images/team/Lucky Cantu Image.jpeg";
 import michaelRice from "../assets/images/team/Michael Rice Image.png";
 import diegoSalinas from "../assets/images/team/Diego Salinas Image.jpg";
@@ -71,16 +69,6 @@ const teamMembers = [
     name: "Diego Salinas",
     position: "Growth Team Member",
     image: diegoSalinas,
-  },
-  {
-    name: "Shimal Tajale",
-    position: "Software Developer",
-    image: shimalTajale,
-  },
-  {
-    name: "Soha Alam",
-    position: "Business Assistant",
-    image: sohaAlam,
   },
 ];
 
