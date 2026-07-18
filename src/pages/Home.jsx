@@ -59,23 +59,22 @@ const FAQ_ITEMS = [
 const HOW_IT_WORKS_STEPS = [
   {
     number: "1",
-    title: "Get your drop",
-    description: "We drop you a curated match at a random time every few days.",
+    title: "The game drops",
+    description: "The game opens every few days with a new match",
     image: step1Image,
     alt: "Student with dating profile tag",
   },
   {
     number: "2",
     title: "Play the game",
-    description: "Play a quick, Kahoot-style game about your match.",
+    description: "Play the Kahoot-style trivia game about your match.",
     image: step2Image,
     alt: "Person at game show podiums",
   },
   {
     number: "3",
     title: "Enjoy your date",
-    description:
-      "Win the game, win the date! We'll schedule & plan everything 😉",
+    description: "Win the game, win the date! We'll plan everything ;)",
     image: step3Image,
     alt: "Couple on a date",
   },

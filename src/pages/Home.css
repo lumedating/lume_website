@@ -281,7 +281,7 @@
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
   margin: 0;
-  max-width: 22rem;
+  max-width: 18rem;
   width: 100%;
   transform: translateY(var(--step-parallax-content));
   will-change: transform;
