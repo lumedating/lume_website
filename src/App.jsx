@@ -14,6 +14,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import Home from "./pages/Home";
 import Mission from "./pages/Mission";
 import Team from "./pages/Team";
+import CheckIn from "./pages/CheckIn";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -326,6 +327,7 @@ function App() {
               <Route path="/mission" element={<Mission />} />
               <Route path="/team" element={<Team />} />
               <Route path="/PrivacyPolicy" element={<PrivacyPolicyRedirect />} />
+              <Route path="/checkin/:id" element={<CheckIn />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
