@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   useLocation,
-  Link,
 } from "react-router-dom";
 import { SHOW_PROMO_BANNER, PRIVACY_POLICY_URL } from "./config/site";
 import "./App.css";
@@ -15,6 +14,7 @@ import Home from "./pages/Home";
 import Mission from "./pages/Mission";
 import Team from "./pages/Team";
 import CheckIn from "./pages/CheckIn";
+import NotFound from "./pages/NotFound";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -244,30 +244,6 @@ function ScrollToHash() {
   }, [location]);
 
   return null;
-}
-
-function NotFound() {
-  return (
-    <div
-      style={{
-        padding: "2rem",
-        textAlign: "center",
-        minHeight: "60vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-      }}
-    >
-      <h1>404 - Page Not Found</h1>
-      <p>The page you're looking for doesn't exist.</p>
-      <Link
-        to="/"
-        style={{ color: "#b700ff", textDecoration: "none", marginTop: "1rem" }}
-      >
-        Go Home
-      </Link>
-    </div>
-  );
 }
 
 function App() {

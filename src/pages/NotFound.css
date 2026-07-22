@@ -1,4 +1,4 @@
-.checkin-page {
+.not-found {
   --home-body-size: 1.25rem;
   --section-slant: clamp(52px, 6vw, 84px);
   position: relative;
@@ -15,10 +15,9 @@
   background: linear-gradient(180deg, #8800be 0%, #c739ff 100%);
   background-attachment: fixed;
   overflow: hidden;
-  color: #ffffff;
 }
 
-.checkin-page::before {
+.not-found::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -32,7 +31,7 @@
   pointer-events: none;
 }
 
-.checkin-page::after {
+.not-found::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -46,27 +45,34 @@
   transform: translateY(2px);
 }
 
-.checkin-content {
+.not-found-content {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  width: 100%;
-  max-width: min(100%, 36rem);
+  max-width: min(100%, 52rem);
 }
 
-.checkin-title {
+.not-found-image {
+  width: min(100%, 18rem);
+  height: auto;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.not-found-title {
   font-family: "Unbounded", sans-serif;
   font-weight: 800;
   font-size: clamp(1.625rem, 2.7vw, 2.25rem);
   color: #ffffff;
   line-height: 1.15;
   margin: 0;
+  white-space: nowrap;
 }
 
-.checkin-body {
+.not-found-message {
   font-family: "DM Sans", sans-serif;
   font-size: var(--home-body-size);
   color: #ffffff;
@@ -75,40 +81,26 @@
   max-width: 32rem;
 }
 
-.checkin-id {
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.65);
-  margin: -0.5rem 0 0;
-  word-break: break-all;
-}
-
-.checkin-store-btn {
+.not-found-home-btn {
   text-decoration: none;
   margin-top: 0.25rem;
 }
 
-.checkin-home-link {
-  font-family: "DM Sans", sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #ffffff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  margin-top: -0.25rem;
-  transition: opacity 0.2s ease;
-}
-
-.checkin-home-link:hover {
-  opacity: 0.85;
+.not-found-home-icon {
+  font-size: 1.25rem;
+  width: 24px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .checkin-page {
+  .not-found {
     background-attachment: scroll;
   }
 
-  .checkin-page::before {
+  .not-found::before {
     background-attachment: scroll;
     background-size: max(100vw, calc(100dvh * 1608 / 1089)) auto;
     background-repeat: repeat-y;
@@ -117,7 +109,11 @@
 }
 
 @media (max-width: 768px) {
-  .checkin-page::after {
+  .not-found::after {
     clip-path: polygon(0 100%, 0 0, 100% 100%);
+  }
+
+  .not-found-image {
+    width: min(100%, 12rem);
   }
 }

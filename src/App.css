@@ -1,6 +1,8 @@
 .app {
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--lume-black, #000000);
   color: #ffffff;
   --lume-purple: #b700ff;
