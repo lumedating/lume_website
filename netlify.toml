@@ -1,4 +1,7 @@
+# Force correct MIME type for Apple App Site Association (extensionless file).
+# Also declared in public/_headers — Netlify applies publish-dir headers reliably.
 [[headers]]
   for = "/.well-known/apple-app-site-association"
   [headers.values]
     Content-Type = "application/json"
+    X-Content-Type-Options = "nosniff"

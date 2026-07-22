@@ -1,5 +1,5 @@
-# Serve AASA as a static file (do not SPA-fallback to index.html)
-/.well-known/apple-app-site-association  /.well-known/apple-app-site-association  200
+# Static AASA must not fall through to the SPA. Explicit 200 keeps the file.
+/.well-known/*  /.well-known/:splat  200
 
 # SPA fallback for client-side routes
 /*    /index.html   200
