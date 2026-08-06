@@ -1,0 +1,161 @@
+/* Mission page — typed letter on purple + love-photo CTA */
+
+.mission-page {
+  width: 100%;
+  --home-body-size: 1.25rem;
+  --section-slant: clamp(52px, 6vw, 84px);
+}
+
+.mission-hero {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, #8800be 0%, #c739ff 100%);
+  background-attachment: fixed;
+  padding: calc(var(--site-header-offset) + 3rem) 4rem 12rem;
+}
+
+.mission-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("../assets/Dot Background.png");
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  mix-blend-mode: screen;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.mission-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mission-section-title {
+  margin-bottom: 5.5rem;
+}
+
+/* Typed / printed paper */
+.mission-paper {
+  position: relative;
+  max-width: 42rem;
+  margin: 0 auto 2.5rem;
+  padding: 5rem 4.5rem 4.5rem;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      transparent 18%
+    ),
+    #f3efe6;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    0 4px 12px rgba(0, 0, 0, 0.18);
+  transform: rotate(-1.5deg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.mission-paragraph {
+  margin: 0;
+  font-family: "Special Elite", "Courier New", Courier, monospace;
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  color: #1b1916;
+  text-align: left;
+}
+
+.mission-emphasis {
+  font-style: italic;
+  font-weight: 400;
+  color: #111111;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.mission-signature {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  text-align: center;
+}
+
+.mission-signature-name {
+  margin: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.75rem, 5.5vw, 3.75rem);
+  line-height: 1.1;
+  color: #111111;
+  transform: rotate(-2deg);
+}
+
+.mission-signature-title {
+  margin: 0;
+  padding-left: 0;
+  font-family: "Special Elite", "Courier New", Courier, monospace;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  color: #3a3732;
+}
+
+.mission-prefooter-bg {
+  object-position: center 72%;
+}
+
+/* iOS/touch: avoid fixed backgrounds */
+@media (hover: none) and (pointer: coarse) {
+  .mission-hero {
+    background-attachment: scroll;
+  }
+
+  .mission-hero::before {
+    background-attachment: scroll;
+    background-size: max(100vw, calc(100dvh * 1608 / 1089)) auto;
+    background-repeat: repeat-y;
+    background-position: center top;
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-hero {
+    padding: calc(var(--site-header-offset) + 2.5rem) 1.5rem 6.5rem;
+  }
+
+  .mission-section-title {
+    margin-bottom: 3rem;
+  }
+
+  .mission-paper {
+    margin-bottom: 1.25rem;
+    padding: 2.75rem 1.75rem 2.75rem;
+    gap: 1.35rem;
+    transform: rotate(-0.6deg);
+  }
+
+  .mission-paragraph {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+  }
+
+  .mission-signature {
+    margin-top: 1.5rem;
+  }
+
+  .mission-signature-name {
+    font-size: 2.5rem;
+  }
+
+  .mission-signature-title {
+    font-size: 0.8125rem;
+  }
+}
