@@ -1,4 +1,5 @@
-import profilePicture from "../assets/images/Instagram Profile Picture.png";
+import logo from "../assets/images/Lume Logo (NEW).png";
+import spinner from "../assets/images/Loading Spinner.png";
 import "./LoadingScreen.css";
 
 function LoadingScreen({ exiting = false }) {
@@ -11,17 +12,19 @@ function LoadingScreen({ exiting = false }) {
       aria-hidden={exiting}
     >
       <div className="loading-screen-content">
-        <div className="loading-screen-waves" aria-hidden="true">
-          <span className="loading-screen-wave" />
-          <span className="loading-screen-wave" />
-          <span className="loading-screen-wave" />
-        </div>
         <img
-          src={profilePicture}
+          src={logo}
+          alt="Lume"
+          className="loading-screen-logo"
+          width={160}
+          height={45}
+        />
+        <img
+          src={spinner}
           alt=""
-          className="loading-screen-image"
-          width={112}
-          height={112}
+          className="loading-screen-spinner"
+          width={28}
+          height={28}
         />
       </div>
     </div>

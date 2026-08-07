@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #111111;
+  background: linear-gradient(180deg, #8800be 0%, #c739ff 100%);
   opacity: 1;
   transition: opacity 0.4s ease;
 }
@@ -16,66 +16,34 @@
 }
 
 .loading-screen-content {
-  position: relative;
-  width: 112px;
-  height: 112px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 1.25rem;
 }
 
-.loading-screen-waves {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.loading-screen-logo {
+  width: min(160px, 42vw);
+  height: auto;
+  object-fit: contain;
 }
 
-.loading-screen-wave {
-  position: absolute;
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  background-color: #b700ff;
-  opacity: 0;
-  animation: loading-wave 2.4s ease-out infinite;
+.loading-screen-spinner {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  animation: loading-spin 0.9s linear infinite;
 }
 
-.loading-screen-wave:nth-child(2) {
-  animation-delay: 0.8s;
-}
-
-.loading-screen-wave:nth-child(3) {
-  animation-delay: 1.6s;
-}
-
-.loading-screen-image {
-  position: relative;
-  z-index: 1;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-@keyframes loading-wave {
-  0% {
-    transform: scale(0.85);
-    opacity: 0.45;
-  }
-
-  100% {
-    transform: scale(2.75);
-    opacity: 0;
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loading-screen-wave {
+  .loading-screen-spinner {
     animation: none;
-    opacity: 0.2;
-    transform: scale(1.4);
   }
 
   .loading-screen--exiting {
