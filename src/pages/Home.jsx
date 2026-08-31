@@ -30,27 +30,27 @@ const POLAROID_TILTS = ["-5deg", "4deg", "-3deg"];
 
 const FAQ_ITEMS = [
   {
-    question: "how do you pick my matches each day?",
+    question: "How do you pick my matches each day?",
     answer:
-      "Lume uses AI to analyze your profile, including your interests, hobbies, ambitions, and more, and compares it with other users to find your most compatible match. You get one curated match dropped each day at a random time.",
+      "Lume uses AI to analyze your profile, including your interests, hobbies, ambitions, and more, and compares it with other users to find your most compatible match. You get one curated match dropped every few days at 10 AM.",
   },
   {
-    question: "how do you verify that all users go to UT?",
+    question: "How do you verify that all users go to UT?",
     answer:
-      "Every new user must sign up with a verified @utexas.edu email before creating an account. That way, only real UT Austin students are on Lume.",
+      "Every new user must verify their @utexas.edu email before creating an account. That way, only real UT Austin students are on Lume.",
   },
   {
-    question: "what happens if i lose the game?",
+    question: "What happens if i lose the game?",
     answer:
-      "If you lose the game, you won't get to go on a date with that day's match. You'll get a fresh chance to play again tomorrow with an equally great match.",
+      "Even if you lose the game, you can still win the day's date if your match wins the game. You better hope they carry...",
   },
   {
-    question: "what happens when i win the game?",
+    question: "What happens when i win the game?",
     answer:
-      "If you and your match both win and say yes to a date, Lume plans it for you based on both of your availability. We'll provide the date, time, and location, and all you have to do is show up.",
+      "If either you or your match win, and both of you agree to the date, Lume plans it for you based on both of your availability. We'll provide the date, time, and location, and all you have to do is show up.",
   },
   {
-    question: "what if i can't make the date after i confirmed?",
+    question: "What if i can't make the date after i confirmed?",
     answer:
       "Life happens! If something comes up after you've confirmed, let your match know through the app as soon as you can. We ask that you only confirm when you're serious about showing up — ghosting isn't cool.",
   },
@@ -67,14 +67,16 @@ const HOW_IT_WORKS_STEPS = [
   {
     number: "2",
     title: "Play the game",
-    description: "Play the Kahoot-style trivia game about your match.",
+    description:
+      "Play 5 trivia questions about your match, built from their profile",
     image: step2Image,
     alt: "Person at game show podiums",
   },
   {
     number: "3",
     title: "Enjoy your date",
-    description: "Win the game, win the date! We'll plan everything ;)",
+    description:
+      "If either of you wins the game, we'll set you up on a fully planned date!",
     image: step3Image,
     alt: "Couple on a date",
   },
@@ -82,7 +84,7 @@ const HOW_IT_WORKS_STEPS = [
 
 const FEATURES = [
   {
-    title: "Only verified college students",
+    title: "Only verified UT students",
     image: graduationHat,
     alt: "Graduation cap",
   },
@@ -429,24 +431,30 @@ function Home() {
         <section className="home-hero" ref={heroRef}>
           <div className="home-hero-content">
             <div className="home-hero-text">
-              <h1 className="home-hero-title home-animate-on-scroll">
-                Fall in love
-                <br />
-                the{" "}
-                <span className="home-hero-highlight">
-                  fun
-                  <img
-                    src={underline}
-                    alt=""
-                    className="home-hero-underline"
-                    aria-hidden="true"
-                  />
-                </span>{" "}
-                way!
-              </h1>
+              <div className="home-hero-heading">
+                <span className="home-hero-tag home-animate-on-scroll">
+                  By UT students, for UT students
+                </span>
+                <h1 className="home-hero-title home-animate-on-scroll">
+                  Fall in love
+                  <br />
+                  the{" "}
+                  <span className="home-hero-highlight">
+                    fun
+                    <img
+                      src={underline}
+                      alt=""
+                      className="home-hero-underline"
+                      aria-hidden="true"
+                    />
+                  </span>{" "}
+                  way!
+                </h1>
+              </div>
               <p className="home-hero-description home-animate-on-scroll">
-                Join Lume, the daily game where you play to win real dates! Play
-                daily trivia about your match to win a casual date with them.
+                Every few days, Lume matches you with a real UT student and
+                gives you the day to play a 5-question trivia game about them.
+                If either of you wins, Lume sets you up on a date!
               </p>
               <button
                 type="button"
@@ -550,11 +558,13 @@ function Home() {
               className="home-feature home-animate-on-scroll"
             >
               <p className="home-feature-title">{feature.title}</p>
-              <img
-                src={feature.image}
-                alt={feature.alt}
-                className="home-feature-image"
-              />
+              <div className="home-feature-image-wrap">
+                <img
+                  src={feature.image}
+                  alt={feature.alt}
+                  className="home-feature-image"
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -587,7 +597,7 @@ function Home() {
         <div className="home-prefooter-overlay" />
         <div className="home-prefooter-content">
           <h2 className="home-prefooter-title home-animate-on-scroll">
-            Don&apos;t miss the next drop...
+            Don&apos;t miss the next game...
           </h2>
           <button
             type="button"
