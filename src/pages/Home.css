@@ -782,6 +782,11 @@
     gap: 2.5rem;
   }
 
+  .home-step-number {
+    top: calc(3.5rem - 0.65em);
+    transform: translateX(-50%) translateY(var(--step-parallax-content));
+  }
+
   .home-features-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -797,6 +802,12 @@
 
   .home-step:nth-child(2) .home-step-image {
     max-width: 265px;
+  }
+}
+
+@media (max-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .home-step-number {
+    transform: translateX(-50%);
   }
 }
 
