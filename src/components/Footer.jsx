@@ -35,7 +35,7 @@ function Footer() {
           <div className="site-footer-logo">
             <img src={logo} alt="Lume" className="logo-icon" />
           </div>
-          <p className="site-footer-text">© 2024 Lume. All rights reserved.</p>
+          <p className="site-footer-text">© 2026 Lume. All rights reserved.</p>
         </div>
         <div className="site-footer-columns">
           <div className="site-footer-column">
