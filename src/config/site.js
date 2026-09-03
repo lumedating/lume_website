@@ -1,5 +1,3 @@
-import privacyPolicyPdf from "../assets/Lume Privacy Policy.pdf";
-
 export const SHOW_PROMO_BANNER = false;
 
 export const APP_STORE_URL =
@@ -7,4 +5,4 @@ export const APP_STORE_URL =
 
 export const INSTAGRAM_URL = "https://www.instagram.com/lumedating/";
 
-export const PRIVACY_POLICY_URL = privacyPolicyPdf;
+export const PRIVACY_POLICY_URL = "/PrivacyPolicy";

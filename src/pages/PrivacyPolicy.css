@@ -1,0 +1,121 @@
+/* Privacy policy document on the Mission page background */
+
+.privacy-kicker {
+  margin: 0 auto 0.75rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.privacy-paper {
+  position: relative;
+  max-width: 46rem;
+  margin: 0 auto 2.5rem;
+  padding: 4.25rem 4.25rem 4.5rem;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 16%
+    ),
+    #f7f4ee;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    0 4px 12px rgba(0, 0, 0, 0.18);
+  color: #1b1916;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.privacy-paper-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(27, 25, 22, 0.12);
+}
+
+.privacy-doc-title {
+  margin: 0 0 0.4rem;
+  font-family: "Unbounded", sans-serif;
+  font-size: clamp(1.5rem, 2.4vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111111;
+}
+
+.privacy-effective {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #5c5852;
+}
+
+.privacy-paper p {
+  margin: 0 0 1.15rem;
+}
+
+.privacy-paper h2 {
+  margin: 2.25rem 0 0.85rem;
+  font-family: "Unbounded", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #111111;
+}
+
+.privacy-paper h2:first-of-type {
+  margin-top: 0.25rem;
+}
+
+.privacy-paper ul {
+  margin: 0 0 1.25rem;
+  padding: 0 0 0 1.25rem;
+}
+
+.privacy-paper li {
+  margin: 0 0 0.55rem;
+  padding-left: 0.25rem;
+}
+
+.privacy-paper li:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-paper a {
+  color: #7a00c9;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+.privacy-paper a:hover {
+  color: #b700ff;
+}
+
+.privacy-paper strong {
+  font-weight: 700;
+  color: #111111;
+}
+
+@media (max-width: 768px) {
+  .privacy-paper {
+    margin-bottom: 1.25rem;
+    padding: 2.5rem 1.5rem 2.75rem;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .privacy-paper-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.15rem;
+  }
+
+  .privacy-paper h2 {
+    margin-top: 1.85rem;
+    font-size: 0.98rem;
+  }
+}

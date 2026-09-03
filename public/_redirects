@@ -1,3 +1,7 @@
+# Dedicated HTML privacy policy (Google OAuth requires crawlable HTML, not SPA/PDF)
+/PrivacyPolicy  /PrivacyPolicy.html  200
+/privacy-policy /PrivacyPolicy.html  200
+
 # Static AASA must not fall through to the SPA. Explicit 200 keeps the file.
 /.well-known/*  /.well-known/:splat  200
 

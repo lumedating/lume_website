@@ -70,16 +70,11 @@ function Footer() {
                 Follow us on Instagram
               </FooterLinkContent>
             </a>
-            <a
-              href={PRIVACY_POLICY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="site-footer-link"
-            >
+            <Link to={PRIVACY_POLICY_URL} className="site-footer-link">
               <FooterLinkContent fontAwesomeLoaded={fontAwesomeLoaded}>
                 Privacy policy
               </FooterLinkContent>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
