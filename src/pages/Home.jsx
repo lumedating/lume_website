@@ -32,7 +32,7 @@ const FAQ_ITEMS = [
   {
     question: "How do you pick my matches each day?",
     answer:
-      "Lume uses AI to analyze your profile, including your interests, hobbies, ambitions, and more, and compares it with other users to find your most compatible match. You get one curated match dropped every few days at 10 AM.",
+      "Lume analyzes your profile, including your interests, hobbies, ambitions, and more, and compares it with other users to find your most compatible match. You get one curated match dropped every few days at 10 AM.",
   },
   {
     question: "How do you verify that all users go to UT?",
