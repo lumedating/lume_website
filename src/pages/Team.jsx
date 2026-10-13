@@ -7,10 +7,7 @@ import anthonyLuparello from "../assets/images/team/Anthony Luparello Image.jpg"
 import stephenNguyen from "../assets/images/team/Stephen Nguyen Image.jpg";
 import austinKeith from "../assets/images/team/Austin Keith Image.jpg";
 import marioJaar from "../assets/images/team/Mario Jaar Image.jpg";
-import claytonLaney from "../assets/images/team/Clayton Laney Image.jpeg";
 import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
-import luckyCantu from "../assets/images/team/Lucky Cantu Image.jpeg";
-import michaelRice from "../assets/images/team/Michael Rice Image.png";
 import diegoSalinas from "../assets/images/team/Diego Salinas Image.jpg";
 import "./Home.css";
 import "./Team.css";
@@ -46,24 +43,9 @@ const teamMembers = [
     image: marioJaar,
   },
   {
-    name: "Clayton Laney",
-    position: "Growth Team Member",
-    image: claytonLaney,
-  },
-  {
     name: "Katherine Nguyen",
     position: "Growth Team Member",
     image: katherineNguyen,
-  },
-  {
-    name: "Lucky Cantu",
-    position: "Growth Team Member",
-    image: luckyCantu,
-  },
-  {
-    name: "Michael Rice",
-    position: "Growth Team Member",
-    image: michaelRice,
   },
   {
     name: "Diego Salinas",
