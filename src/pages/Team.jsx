@@ -13,6 +13,7 @@ import julianProvine from "../assets/images/team/Julian Provine Image.jpg";
 import veronicaGonzales from "../assets/images/team/Veronica Gonzales Image.jpeg";
 import evelynHernandez from "../assets/images/team/Evelyn Hernandez Image.jpeg";
 import sahnyaKeys from "../assets/images/team/Sahnya Keys Image.jpg";
+import fernandaPhelps from "../assets/images/team/Fernanda Phelps Image.jpeg";
 import "./Home.css";
 import "./Team.css";
 
@@ -75,6 +76,11 @@ const teamMembers = [
     name: "Sahnya Keys",
     position: "Marketing Intern",
     image: sahnyaKeys,
+  },
+  {
+    name: "Fernanda Phelps",
+    position: "Marketing Intern",
+    image: fernandaPhelps,
   },
 ];
 
