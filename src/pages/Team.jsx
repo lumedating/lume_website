@@ -9,6 +9,10 @@ import austinKeith from "../assets/images/team/Austin Keith Image.jpg";
 import marioJaar from "../assets/images/team/Mario Jaar Image.jpg";
 import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
 import diegoSalinas from "../assets/images/team/Diego Salinas Image.jpg";
+import julianProvine from "../assets/images/team/Julian Provine Image.jpg";
+import veronicaGonzales from "../assets/images/team/Veronica Gonzales Image.jpeg";
+import evelynHernandez from "../assets/images/team/Evelyn Hernandez Image.jpeg";
+import sahnyaKeys from "../assets/images/team/Sahnya Keys Image.jpg";
 import "./Home.css";
 import "./Team.css";
 
@@ -51,6 +55,26 @@ const teamMembers = [
     name: "Diego Salinas",
     position: "Growth Team Member",
     image: diegoSalinas,
+  },
+  {
+    name: "Julian Provine",
+    position: "Marketing Intern",
+    image: julianProvine,
+  },
+  {
+    name: "Veronica Gonzales",
+    position: "Marketing Intern",
+    image: veronicaGonzales,
+  },
+  {
+    name: "Evelyn Hernandez",
+    position: "Marketing Intern",
+    image: evelynHernandez,
+  },
+  {
+    name: "Sahnya Keys",
+    position: "Marketing Intern",
+    image: sahnyaKeys,
   },
 ];
 
