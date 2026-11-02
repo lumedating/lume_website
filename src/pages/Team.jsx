@@ -5,9 +5,6 @@ import { usePrefooterParallax } from "../hooks/usePrefooterParallax";
 import tannerKopel from "../assets/images/team/Tanner Kopel Image.jpg";
 import anthonyLuparello from "../assets/images/team/Anthony Luparello Image.jpg";
 import stephenNguyen from "../assets/images/team/Stephen Nguyen Image.jpg";
-import austinKeith from "../assets/images/team/Austin Keith Image.jpg";
-import marioJaar from "../assets/images/team/Mario Jaar Image.jpg";
-import katherineNguyen from "../assets/images/team/Katherine Nguyen Image.jpg";
 import diegoSalinas from "../assets/images/team/Diego Salinas Image.jpg";
 import julianProvine from "../assets/images/team/Julian Provine Image.jpg";
 import veronicaGonzales from "../assets/images/team/Veronica Gonzales Image.jpeg";
@@ -36,21 +33,6 @@ const teamMembers = [
     name: "Stephen Nguyen",
     position: "Growth Team Member",
     image: stephenNguyen,
-  },
-  {
-    name: "Austin Keith",
-    position: "Growth Team Member",
-    image: austinKeith,
-  },
-  {
-    name: "Mario Jaar",
-    position: "Growth Team Member",
-    image: marioJaar,
-  },
-  {
-    name: "Katherine Nguyen",
-    position: "Growth Team Member",
-    image: katherineNguyen,
   },
   {
     name: "Diego Salinas",

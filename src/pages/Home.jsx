@@ -12,18 +12,28 @@ import coffeeCups from "../assets/images/Coffee Cups Image.png";
 import lovePhoto1 from "../assets/images/Love Photo 1.jpg";
 import lovePhoto2 from "../assets/images/Love Photo 2.jpg";
 import lovePhoto3 from "../assets/images/Love Photo 3.jpg";
+import partyPhoto13 from "../assets/images/party_images/gallery/KNG10013.jpg";
+import partyPhoto19 from "../assets/images/party_images/gallery/KNG10019.jpg";
+import partyPhoto30 from "../assets/images/party_images/gallery/KNG10030.jpg";
+import partyPhoto34 from "../assets/images/party_images/gallery/KNG10034.jpg";
+import partyPhoto51 from "../assets/images/party_images/gallery/KNG10051.jpg";
 import { useFontAwesome } from "../hooks/useFontAwesome";
 import { usePrefooterParallax } from "../hooks/usePrefooterParallax";
 import { APP_STORE_URL } from "../config/site";
 import "./Home.css";
 
-const LOVE_PHOTOS = [lovePhoto1, lovePhoto2, lovePhoto3];
-
 const COLLEGE_GALLERY_PHOTOS = [
-  ...LOVE_PHOTOS,
-  ...LOVE_PHOTOS,
-  ...LOVE_PHOTOS,
-  ...LOVE_PHOTOS,
+  lovePhoto1,
+  partyPhoto13,
+  lovePhoto2,
+  partyPhoto19,
+  lovePhoto3,
+  partyPhoto30,
+  lovePhoto1,
+  partyPhoto34,
+  lovePhoto2,
+  partyPhoto51,
+  lovePhoto3,
 ];
 
 const POLAROID_TILTS = ["-5deg", "4deg", "-3deg"];
