@@ -9,7 +9,6 @@ import graduationHat from "../assets/images/Graduation Hat.png";
 import graduationKissingPhoto from "../assets/images/Graduation Kissing Photo.png";
 import limegreenImage from "../assets/images/Limegreen Image.png";
 import coffeeCups from "../assets/images/Coffee Cups Image.png";
-import lovePhoto1 from "../assets/images/Love Photo 1.jpg";
 import lovePhoto2 from "../assets/images/Love Photo 2.jpg";
 import lovePhoto3 from "../assets/images/Love Photo 3.jpg";
 import partyPhoto13 from "../assets/images/party_images/gallery/KNG10013.jpg";
@@ -23,13 +22,11 @@ import { APP_STORE_URL } from "../config/site";
 import "./Home.css";
 
 const COLLEGE_GALLERY_PHOTOS = [
-  lovePhoto1,
   partyPhoto13,
   lovePhoto2,
   partyPhoto19,
   lovePhoto3,
   partyPhoto30,
-  lovePhoto1,
   partyPhoto34,
   lovePhoto2,
   partyPhoto51,
