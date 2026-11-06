@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Mission from "./pages/Mission";
 import Team from "./pages/Team";
 import CheckIn from "./pages/CheckIn";
+import DropReveal from "./pages/DropReveal";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
@@ -298,6 +299,7 @@ function App() {
               <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/checkin/:id" element={<CheckIn />} />
+              <Route path="/drop-reveal" element={<DropReveal />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
