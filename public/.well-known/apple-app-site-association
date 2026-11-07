@@ -4,7 +4,7 @@
     "details": [
       {
         "appID": "R38UATP8R5.com.lumedating.lume",
-        "paths": ["/checkin", "/checkin/*", "/drop-reveal", "/drop-reveal/*"]
+        "paths": ["/checkin", "/checkin/*", "/drop-reveal", "/drop-reveal/*", "/home", "/home/*"]
       }
     ]
   }
