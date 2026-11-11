@@ -15,7 +15,8 @@
 }
 
 .app.has-promo-banner {
-  --promo-banner-height: 40px;
+  --promo-banner-height: 36px;
+  --header-nav-height: 74px;
 }
 
 /* Animations */
@@ -68,57 +69,112 @@
 }
 
 .promo-banner {
-  display: block;
+  display: flex;
+  align-items: stretch;
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 0.625rem 1rem;
+  height: var(--promo-banner-height);
+  z-index: 1;
   background-color: #b700ff;
   color: #ffffff;
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: opacity 0.2s;
+  text-decoration: none;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.18);
 }
 
-.promo-banner::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
+.promo-banner-track {
+  display: flex;
+  align-items: stretch;
   height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 35%,
-    rgba(255, 255, 255, 0.2) 50%,
-    transparent 65%
-  );
-  animation: promo-banner-shine 3.5s ease-in-out infinite;
+  width: max-content;
+  animation: promo-banner-marquee 22s linear infinite;
+}
+
+.promo-banner:hover .promo-banner-track {
+  animation-play-state: paused;
+}
+
+.promo-banner-group {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  gap: 2.1rem;
+  padding-right: 2.1rem;
+}
+
+.promo-banner-item {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  gap: 2.1rem;
+  font-family: "Unbounded", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.promo-banner-money-slot {
+  position: relative;
+  align-self: stretch;
+  flex: 0 0 auto;
+  width: 2.65rem;
+}
+
+.promo-banner-money {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3.15rem;
+  height: auto;
+  transform: translate(-50%, -40%) rotate(125deg);
   pointer-events: none;
+  user-select: none;
 }
 
-@keyframes promo-banner-shine {
-  0% {
-    left: -100%;
+@keyframes promo-banner-marquee {
+  from {
+    transform: translateX(0);
   }
 
-  100% {
-    left: 200%;
+  to {
+    transform: translateX(-50%);
   }
 }
 
-.promo-banner:hover {
-  opacity: 0.9;
+@media (prefers-reduced-motion: reduce) {
+  .promo-banner-track {
+    animation: none;
+  }
+
+  .promo-banner-track {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .promo-banner-group {
+    padding-right: 0;
+  }
+
+  .promo-banner-group + .promo-banner-group,
+  .promo-banner-item + .promo-banner-item {
+    display: none;
+  }
+
+  .promo-banner-item {
+    padding-right: 0;
+  }
+
+  .promo-banner-money-slot {
+    display: none;
+  }
 }
 
 .header {
   margin: 0;
   height: var(--header-nav-height);
-  padding: 0.75rem 4rem 0;
+  padding: 0.25rem 4rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -826,7 +882,6 @@
   .how-it-works-content {
     grid-template-columns: 1fr;
   }
-
 }
 
 @media (max-width: 768px) {
@@ -851,13 +906,16 @@
     margin-right: 0;
   }
 
-  .promo-banner {
+  .app.has-promo-banner {
+    --header-nav-height: 82px;
+  }
+
+  .promo-banner-item {
     font-size: 0.75rem;
-    padding: 0.5rem 1rem;
   }
 
   .header {
-    padding: 0.625rem 1.5rem 0.75rem;
+    padding: 0.2rem 1.5rem 0.45rem;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
